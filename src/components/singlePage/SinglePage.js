@@ -136,7 +136,7 @@ function SinglePage(props) {
                 <p className="cardInformation__price">{ad.price} &#8381;</p>
                 {props.username == ad.email ? (
                   <div className="buttons__container">
-                    <button class="editAd">Edit</button><button class="deleteAd">Delete</button>
+                    <button className="editAd">Edit</button><button className="deleteAd">Delete</button>
                   </div>
                 ) : (<div></div>)}
               </div>

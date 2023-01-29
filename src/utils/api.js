@@ -33,11 +33,11 @@ class Api {
         }).then(this._handleResponse);
     };
 
-    updateUser(data, username, password) {
+    updateUser(userInfo, username, password) {
         return fetch(`${this._url}/users/me`, {
             method: "PATCH",
             //credentials: 'include',
-            body: JSON.stringify(data),
+            body: JSON.stringify(userInfo),
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),
@@ -48,10 +48,10 @@ class Api {
     updateUserPhoto(image, username, password) {
         const formData = new FormData();
         formData.append("image", image);
-        return fetch(`${this._url}/users/me`, formData, {
+        return fetch(`${this._url}/users/me/image`, {
+            body: formData,
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),
             },
         }).then(this._handleResponse);
@@ -178,16 +178,16 @@ class Api {
     editAddPhoto(id, image, username, password) {
         const formData = new FormData();
         formData.append("image", image);
-        return fetch(`${this._url}/ads/${id}`, formData, {
+        return fetch(`${this._url}/ads/${id}`, {
             method: "PATCH",
+            body: formData,
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),
             },
         }).then(this._handleResponse);
     }
 
-    //delite add
+    //delete add
     deleteAdd(id, username, password) {
         return fetch(`${this._url}/ads/${id}`, {
             method: "DELETE",
@@ -197,6 +197,21 @@ class Api {
             },
         });
     }
+
+    updatePassword(username, password, newPassword){
+        return fetch(`${this._url}/users/set_password`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Basic " + base64.encode(`${username}:${password}`),
+            },
+            body: JSON.stringify({
+                "currentPassword": `${password}`,
+                "newPassword": `${newPassword}`,
+            }),
+        }).then(this._handleResponse);
+    }
+
 }
 
 const api = new Api({

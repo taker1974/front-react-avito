@@ -16,7 +16,7 @@ function UserProfile(props) {
             className="profile-avatar"
             style={{
               backgroundImage: `url(${
-                props.userInfo.image ? props.userInfo.image : defaultImg
+                props.userInfo.image ? ("http://localhost:8080" + props.userInfo.image) : defaultImg
               })`,
             }}
           >
@@ -26,6 +26,7 @@ function UserProfile(props) {
         <Profile
           userInfo={props.userInfo}
           handleUpdateUser={props.handleUpdateUser}
+          handleUpdatePassword={props.handleUpdatePassword}
         />
       </section>
       <div className="userProfile-container">

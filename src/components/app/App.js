@@ -14,7 +14,7 @@ import NewAdd from "../newAdd/NewAdd";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 
 function App() {
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   //user
   const [userInfo, setUserInfo] = useState({});
@@ -129,17 +129,27 @@ function App() {
       });
   };
 
-  const handleUpdateUser = (data) => {
+  const handleUpdateUser = ({firstName, lastName, phone}) => {
     api
-      .updateUser(data, username, password)
+      .updateUser(
+          {
+            "id": `${userInfo.id}`,
+            "email": `${userInfo.email}`,
+            "firstName": `${firstName}`,
+            "lastName": `${lastName}`,
+            "phone": `${phone}`,
+          },
+          username,
+          password
+      )
       .then((res) => {
         setUserInfo({
           ...userInfo,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          phone: res.data.phone,
-          username: res.data.username,
-          id: res.data.id,
+          firstName: res.firstName,
+          lastName: res.lastName,
+          phone: res.phone,
+          username: res.email,
+          id: res.id,
         });
       })
       .catch((error) => {
@@ -147,13 +157,24 @@ function App() {
       });
   };
 
+  const handleUpdatePassword = (newPassword) => {
+    api
+      .updatePassword(username, password, newPassword)
+      .then((res) => {
+        signOut();
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }
+
   const handleUpdateUserPhoto = (image) => {
     api
       .updateUserPhoto(image, username, password)
       .then((res) => {
         setUserInfo({
           ...userInfo,
-          image: res.data.image,
+          image: res.image,
         });
       })
       .catch((error) => {
@@ -309,6 +330,7 @@ function App() {
                   userAds={userAds}
                   isLoading={isLoading}
                   handleUpdateUser={handleUpdateUser}
+                  handleUpdatePassword={handleUpdatePassword}
                   handleUpdateUserPhoto={handleUpdateUserPhoto}
                   visiableAds={visiableAds}
                   showMoreAds={showMoreAds}

@@ -40,7 +40,7 @@
     opacity: 1;
 }
 
-.modal__form-login {
+.modal__form-password {
     width: 366px;
     height: 439px;
     background-color: #FFFFFF;
@@ -58,7 +58,7 @@
     padding: 43px 47px 47px 40px;
 }
 
-.modal__form-login input:first-child {
+.modal__form-password input:first-child {
     margin-bottom: 30px;
 }
 
@@ -214,7 +214,7 @@
         opacity: 1;
     }
 
-    .modal__form-login {
+    .modal__form-password {
         width: 320px;
         height: auto;
         background-color: #FFFFFF;

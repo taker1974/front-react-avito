@@ -3,7 +3,7 @@ import UserForm from "../userForm/UserForm";
 import useFormValidation from "../../utils/hooks/useFormValidation";
 import Modal from "../Modal/Modal";
 
-function Profile({ userInfo, handleUpdateUser }) {
+function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
   const [input, setInput] = useState("");
   const [isDisplayModal, setDisplayModal] = useState(false);
   const { values, handleChange, errors, isValid, setValues } =
@@ -42,7 +42,7 @@ function Profile({ userInfo, handleUpdateUser }) {
     <Modal
       isVisible={isDisplayModal}
       closeModal={handleClickClose}
-      updatePassword={handleUpdateUser}
+      updatePassword={handleUpdatePassword}
     />
     <UserForm
       title="Привет,"
@@ -108,7 +108,7 @@ function Profile({ userInfo, handleUpdateUser }) {
         </div>
       </label>
     </UserForm>
-    <button onClick={handleClickOpen}>Сменить пароль</button>
+    <button className={"button-link button-link__text"} onClick={handleClickOpen}>Сменить пароль</button>
     </>
   );
 }

@@ -5,7 +5,7 @@ function Ad(ad) {
   return (
     <li className="ad" key={ad.id}>
       {ad.image ? (
-        <img src={"http://127.0.0.1:8080"+ad.image} className="ad-img" alt="product img" />
+        <img src={"http://localhost:8080"+ad.image} className="ad-img" alt="product img" />
       ) : ad.image === null ? (
         <div className="ad-img_null" />
       ) : (
