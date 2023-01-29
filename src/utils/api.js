@@ -54,7 +54,12 @@ class Api {
             headers: {
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),
             },
-        }).then(this._handleResponse);
+        }).then(res => {
+            if (!res.ok) {
+                return Promise.reject(`Error: ${res.status}`)
+            }
+            return this.getUserInfo(username, password);
+        });
     }
 
     //comment|comments

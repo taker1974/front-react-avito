@@ -59,7 +59,7 @@ function App() {
       console.log(JSON.parse(localStorage.getItem('authTokens')).username);
       setPassword(JSON.parse(localStorage.getItem('authTokens')).password);
     }
-  };
+  }
 
   useEffect(() => {
     console.log('useEffect1');
@@ -70,9 +70,9 @@ function App() {
         api.getUsersAds(username, password),
         api.getUserInfo(username, password),
       ])
-        .then(([usersAds, userInormation]) => {
+        .then(([usersAds, userInformation]) => {
           setUserAds(usersAds);
-          setUserInfo(userInormation);
+          setUserInfo(userInformation);
         })
         .catch((error) => console.log("error", error))
         .finally(() => setTimeout(() => setIsLoading(false), 700));
@@ -200,10 +200,15 @@ function App() {
       .catch((error) => {
         console.log(error);
         setIsAuthorized(false);
-        if (error === 500 || "Failed to fetch") return console.log(error);
-        if (error === 400) return console.log("Все поля должны быть заполнены");
-        if (error === 401)
+        if (error === 500 || "Failed to fetch") {
+          return console.log(error);
+        }
+        if (error === 400) {
+          return console.log("Все поля должны быть заполнены");
+        }
+        if (error === 401) {
           return console.log("Вы ввели неправильный логин или пароль.");
+        }
         console.log(error);
       })
       .finally(() => {
