@@ -587,8 +587,6 @@ components:
           type: string
         regDate:
           type: string
-        city:
-          type: string
         image:
           type: string
     ResponseWrapperAds:
