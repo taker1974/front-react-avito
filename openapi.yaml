@@ -452,9 +452,6 @@ paths:
         '403':
           content: {}
           description: Forbidden
-        '404':
-          content: {}
-          description: Not Found
       summary: getAdsMe
       tags:
         - Объявления
