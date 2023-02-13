@@ -455,10 +455,10 @@ paths:
       summary: getAdsMe
       tags:
         - Объявления
-  /image/{id}:
+  /ads/{pk_id}/image:
     patch:
       tags:
-        - Изображения
+        - Объявления
       summary: updateAdsImage
       operationId: updateImage
       parameters:
