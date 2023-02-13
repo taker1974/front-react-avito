@@ -26,12 +26,12 @@ paths:
                 $ref: '#/components/schemas/NewPassword'
         '401':
           description: Unauthorized
-          content: {}
+          content: { }
         '403':
           description: Forbidden
-          content: {}
+          content: { }
         '404':
-          content: {}
+          content: { }
           description: Not Found
 
   /register:
@@ -50,13 +50,13 @@ paths:
         '404':
           description: Not Found
         '201':
-          content: {}
+          content: { }
           description: Created
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
         '403':
-          content: {}
+          content: { }
           description: Forbidden
   /login:
     post:
@@ -80,10 +80,10 @@ paths:
         '404':
           description: Not Found
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
         '403':
-          content: {}
+          content: { }
           description: Forbidden
   /ads:
     get:
@@ -126,10 +126,10 @@ paths:
         '404':
           description: Not Found
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
   /ads/{ad_pk}/comments:
     get:
@@ -182,10 +182,10 @@ paths:
         '404':
           description: Not Found
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
   /users/me:
     get:
@@ -201,13 +201,13 @@ paths:
                 $ref: '#/components/schemas/User'
           description: OK
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '404':
-          content: {}
+          content: { }
           description: Not Found
     patch:
       tags:
@@ -229,13 +229,13 @@ paths:
                 $ref: '#/components/schemas/User'
         '204':
           description: No Content
-          content: {}
+          content: { }
         '401':
           description: Unauthorized
-          content: {}
+          content: { }
         '403':
           description: Forbidden
-          content: {}
+          content: { }
         '404':
           description: Not Found
   /users/me/image:
@@ -259,7 +259,7 @@ paths:
       responses:
         '200':
           description: OK
-          content: {}
+          content: { }
         '404':
           description: Not Found
   /ads/{id}:
@@ -298,13 +298,13 @@ paths:
             format: int32
       responses:
         '204':
-          content: {}
+          content: { }
           description: No Content
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
         '403':
-          content: {}
+          content: { }
           description: Forbidden
     patch:
       tags:
@@ -334,10 +334,10 @@ paths:
         '404':
           description: Not Found
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
   /ads/{ad_pk}/comments/{id}:
     get:
@@ -391,10 +391,10 @@ paths:
         '404':
           description: Not Found
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
     patch:
       tags:
@@ -430,12 +430,12 @@ paths:
         '404':
           description: Not Found
         '403':
-          content: {}
+          content: { }
           description: Forbidden
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
-        
+
   /ads/me:
     get:
       operationId: getAdsMeUsingGET
@@ -447,15 +447,14 @@ paths:
                 $ref: '#/components/schemas/ResponseWrapperAds'
           description: OK
         '401':
-          content: {}
+          content: { }
           description: Unauthorized
         '403':
-          content: {}
+          content: { }
           description: Forbidden
       summary: getAdsMe
       tags:
         - Объявления
-      x-accepts: '*/*'
   /image/{id}:
     patch:
       tags:
@@ -514,7 +513,7 @@ components:
           type: string
         phone:
           type: string
-        role:
+        role: #todo: need to add input it in front-side
           type: string
           enum:
             - USER
@@ -547,9 +546,7 @@ components:
           type: integer
           format: int32
         image:
-          type: array
-          items:
-            type: string
+          type: string
         pk:
           type: integer
           format: int32
@@ -585,7 +582,7 @@ components:
           type: string
         phone:
           type: string
-        regDate:
+        regDate: #todo: need to add handling in front-side
           type: string
         image:
           type: string
@@ -602,19 +599,17 @@ components:
     FullAds:
       type: object
       properties:
-        authorFirstName:
+        authorFirstName: #todo: need to add handling in front-side
           type: string
-        authorLastName:
+        authorLastName: #todo: need to add handling in front-side
           type: string
         description:
           type: string
-        email:
+        email: #todo: need to add handling in front-side
           type: string
         image:
-          type: array
-          items:
-            type: string
-        phone:
+          type: string
+        phone: #todo: need to add handling in front-side
           type: string
         pk:
           type: integer
