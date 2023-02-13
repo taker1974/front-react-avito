@@ -131,14 +131,14 @@ paths:
         '401':
           content: { }
           description: Unauthorized
-  /ads/{ad_pk}/comments:
+  /ads/{id}/comments:
     get:
       tags:
         - Объявления
       summary: getComments
       operationId: getComments
       parameters:
-        - name: ad_pk
+        - name: id
           in: path
           required: true
           schema:
@@ -160,7 +160,7 @@ paths:
       summary: addComments
       operationId: addComments
       parameters:
-        - name: ad_pk
+        - name: id
           in: path
           required: true
           schema:
@@ -339,20 +339,20 @@ paths:
         '401':
           content: { }
           description: Unauthorized
-  /ads/{ad_pk}/comments/{id}:
+  /ads/{adId}/comments/{commentId}:
     get:
       tags:
         - Объявления
       summary: getComments
       operationId: getComments
       parameters:
-        - name: ad_pk
+        - name: adId
           in: path
           required: true
           schema:
             type: integer
             format: int32
-        - name: id
+        - name: commentId
           in: path
           required: true
           schema:
@@ -373,7 +373,7 @@ paths:
       summary: deleteComments
       operationId: deleteComments
       parameters:
-        - name: ad_pk
+        - name: id
           in: path
           required: true
           schema:
@@ -402,7 +402,7 @@ paths:
       summary: updateComments
       operationId: updateComments
       parameters:
-        - name: ad_pk
+        - name: id
           in: path
           required: true
           schema:
@@ -455,7 +455,7 @@ paths:
       summary: getAdsMe
       tags:
         - Объявления
-  /ads/{pk_id}/image:
+  /ads/{id}/image:
     patch:
       tags:
         - Объявления
@@ -547,7 +547,7 @@ components:
           format: int32
         image:
           type: string
-        pk:
+        id:
           type: integer
           format: int32
         price:
@@ -563,7 +563,7 @@ components:
           format: int32
         createdAt:
           type: string
-        pk:
+        id:
           type: integer
           format: int32
         text:
@@ -611,7 +611,7 @@ components:
           type: string
         phone: #todo: need to add handling in front-side
           type: string
-        pk:
+        id:
           type: integer
           format: int32
         price:

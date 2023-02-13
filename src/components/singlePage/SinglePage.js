@@ -11,7 +11,7 @@ function SinglePage(props) {
   const { id } = useParams();
   const [ad, setAd] = useState({});
   const [comments, setComments] = useState([]);
-  let ad_pk = id;
+  let adId = id;
   console.log('Single Page', props, ad);
 
   let history = useNavigate();
@@ -20,7 +20,7 @@ function SinglePage(props) {
     if (props.isAuthorized) {
       props.setIsLoading(true);
       Promise.all([
-        api.getComments(ad_pk, props.username, props.password),
+        api.getComments(adId, props.username, props.password),
         api.getAd(id, props.username, props.password),
       ])
         .then(([commentsData, adData]) => {
@@ -39,7 +39,7 @@ function SinglePage(props) {
       .editAdd(id, data, props.username, props.password)
       .then((data) => {
         props.setAds((ads) =>
-          ads.filter((i) => (i.id === ad.pk ? data : null))
+          ads.filter((i) => (i.id === ad.id ? data : null))
         );
       })
       .catch((error) => console.log("error", error))
@@ -51,7 +51,7 @@ function SinglePage(props) {
       .editAddPhoto(id, image, props.username, props.password)
       .then((image) => {
         props.setAds((ads) =>
-          ads.filter((i) => (i.id === ad.pk ? image : null))
+          ads.filter((i) => (i.id === ad.id ? image : null))
         );
       })
       .catch((error) => console.log("error", error));
@@ -153,7 +153,7 @@ function SinglePage(props) {
                 user={props.user}
                 username={props.username}
                 password={props.password}
-                adId={ad_pk}
+                adId={adId}
               />
             </div>
             <EditAdPopup

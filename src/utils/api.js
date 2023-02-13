@@ -63,8 +63,8 @@ class Api {
     }
 
     //comment|comments
-    getComments(ad_pk, username, password) {
-        return fetch(`${this._url}/ads/${ad_pk}/comments`, {
+    getComments(adId, username, password) {
+        return fetch(`${this._url}/ads/${adId}/comments`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

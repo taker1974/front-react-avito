@@ -22,12 +22,12 @@ function CommentList({
           {comments.map((comment) => {
             return (
               <Comment
-                key={comment.pk}
+                key={comment.id}
                 text={comment.text}
                 deleteComment1={deleteComment}
                 adId={adId}
                 img={comment.author_image}
-                commentId={comment.pk}
+                commentId={comment.id}
                 userId={comment.author_id}
                 setComments={setComments}
                 handleEditCommPopupOpen={handleEditCommPopupOpen}

@@ -20,13 +20,13 @@ function Ads({ ads, isAuthorized, visiableAds, showMoreAds }) {
           {ads.slice(0, visiableAds).map((ad) => {
             return (
               <Link
-                key={ad.pk}
-                to={localStorage.getItem('authTokens') ? `ads/${ad.pk}` : "/"}
+                key={ad.id}
+                to={localStorage.getItem('authTokens') ? `ads/${ad.id` : "/"}
                 className="ads__link"
               >
                 <Ad
-                  key={ad.pk}
-                  pk={ad.pk}
+                  key={ad.id}
+                  id={ad.id}
                   title={ad.title}
                   image={ad.image}
                   price={ad.price}
