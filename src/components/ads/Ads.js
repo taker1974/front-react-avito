@@ -21,7 +21,7 @@ function Ads({ ads, isAuthorized, visiableAds, showMoreAds }) {
             return (
               <Link
                 key={ad.id}
-                to={localStorage.getItem('authTokens') ? `ads/${ad.id` : "/"}
+                to={localStorage.getItem('authTokens') ? `ads/${ad.id}` : "/"}
                 className="ads__link"
               >
                 <Ad
