@@ -373,13 +373,13 @@ paths:
       summary: deleteComments
       operationId: deleteComments
       parameters:
-        - name: id
+        - name: adId
           in: path
           required: true
           schema:
             type: integer
             format: int32
-        - name: id
+        - name: commentId
           in: path
           required: true
           schema:
@@ -402,13 +402,13 @@ paths:
       summary: updateComments
       operationId: updateComments
       parameters:
-        - name: id
+        - name: adId
           in: path
           required: true
           schema:
             type: integer
             format: int32
-        - name: id
+        - name: commentId
           in: path
           required: true
           schema:
