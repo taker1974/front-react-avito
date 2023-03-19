@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 let devMode = process.env.NODE_ENV !== 'production';
 
@@ -42,8 +41,8 @@ module.exports = {
 					{
 						loader: "css-loader",
 						options: {
+							url: false,
 							sourceMap: true
-
 						}
 					},
 					"postcss-loader",
@@ -51,33 +50,23 @@ module.exports = {
 						loader: "sass-loader",
 						options: {
 							sourceMap: true
-
 						}
-					},
-					{
-						loader: 'resolve-url-loader',
-						options: {
-							root: path.resolve(ENTRY_PATH, 'images'), // considering all your images are placed in specified folder. Note: this is just a string that will get as prefix to image path
-						},
 					}
 				],
 			},
 			{
 				test: /\.css$/,
 				use: [ 'style-loader', 'css-loader' ]
-			},
-			{
-				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-				loader: 'file-loader',
-				options: {
-					name: '[path][name].[hash].[ext]',
-				}
-			},
+			}
 		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'public', 'index.html')
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+			chunkFilename: "[id].css"
 		}),
 		new CopyWebpackPlugin(
 			{
@@ -91,20 +80,16 @@ module.exports = {
 						to: './favicon.ico'
 					},
 					{
-						from: './src/images',
-						to: './images'
+						context: './',
+						from: './src/vendor/font/*',
+						to: './',
 					},
 					{
-						from: './src/vendor/font/*',
-						to: './'
+						context: './',
+						from: './src/images/*',
+						to: './',
 					}
 				]
-			}),
-		(devMode ? () => {
-		} : new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})),
-		new MiniCssExtractPlugin({
-			filename: "[name].css",
-			chunkFilename: "[id].css"
-		})
+			})
 	]
 };

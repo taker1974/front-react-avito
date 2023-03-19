@@ -3,8 +3,6 @@ import MediaQuery from "react-responsive";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Button from "../button/Button";
-import asd from "/src/images/tear-off-ads.png";
-import sandwich from "/src/images/sandwich__icon.png";
 
 function Header({ onOpen, isAuthorized, signOut }) {
   //console.log('Header', isAuthorized);
@@ -13,21 +11,21 @@ function Header({ onOpen, isAuthorized, signOut }) {
     <header className="header">
       {location === "/sign-up" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={asd} alt="asd icon" />
+          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={asd} alt="asd icon" />
+          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in/email" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={asd} alt="asd icon" />
+          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in/email/newpassword" ? (
-        <img className="header__img" src={asd} alt="asd icon" />
+        <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
       ) : isAuthorized ? (
         <>
-          <img className="header__img" src={asd} alt="asd icon" />
+          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
           <MediaQuery minWidth={1000}>
             <Button
               logOut={signOut}
@@ -39,7 +37,7 @@ function Header({ onOpen, isAuthorized, signOut }) {
           <MediaQuery maxWidth={999}>
             <img
               className="header__sandwich"
-              src={sandwich}
+              src={'/src/images/sandwich__icon.png'}
               alt="sandwich icon"
               onClick={onOpen}
             />
@@ -48,7 +46,7 @@ function Header({ onOpen, isAuthorized, signOut }) {
       ) : (
         <>
           <Link className="link" to="/" >
-            <img className="header__img" src={asd} alt="asd icon" />
+            <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
           </Link>
           <Link className="link" to="/sign-in">
             <Button
