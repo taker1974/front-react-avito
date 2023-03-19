@@ -1,22 +1,29 @@
 import React from "react";
 import img from "../../images/malvestida-u79wy47kvVs-unsplash.jpg";
+import {connect} from 'react-redux';
 
-function Ad(ad) {
+function Ad({id, image, title, price, userInfo: {username, password}}) {
   return (
-    <li className="ad" key={ad.id}>
-      {ad.image ? (
-        <img src={"http://localhost:8080"+ad.image} className="ad-img" alt="product img" />
-      ) : ad.image === null ? (
+    <li className="ad" key={id}>
+      {image ? (
+        <img src={`http://${username}:${password}@localhost:8080`+image} className="ad-img" alt="product img" />
+      ) : image === null ? (
         <div className="ad-img_null" />
       ) : (
         <img src={img} className="ad-img" alt="product img" />
       )}
       <div className="ad__description">
-        <h2 className="ad__title">{ad.title}</h2>
-        <p className="ad__price">{ad.price} &#8381;</p>
+        <h2 className="ad__title">{title}</h2>
+        <p className="ad__price">{price} &#8381;</p>
       </div>
     </li>
   );
 }
 
-export default Ad;
+const ConnectedAd = connect(
+    (state) => ({
+        userInfo: {...state.userInfo}
+    })
+)(Ad)
+
+export default ConnectedAd;

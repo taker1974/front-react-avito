@@ -27,7 +27,7 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
     setValues(ad);
   }, [ad, setValues]);
 
-  console.log('EditAdPopup', ad);
+  //console.log('EditAdPopup', ad);
 
   return (
     <div className={`popup ${isEditPopupOpen ? "popup_is-opened" : ""}`}>

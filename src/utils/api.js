@@ -183,7 +183,7 @@ class Api {
     editAddPhoto(id, image, username, password) {
         const formData = new FormData();
         formData.append("image", image);
-        return fetch(`${this._url}/ads/${id}`, {
+        return fetch(`${this._url}/ads/${id}/image`, {
             method: "PATCH",
             body: formData,
             headers: {

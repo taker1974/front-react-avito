@@ -7,7 +7,7 @@ function Navigation({ onClose, user }) {
     <ul className="navigation" onClick={onClose}>
       <NavLink
         to="/"
-        user={user}
+        user={(new Boolean(user)).toString()} // иначе вызывает ошибку использование булеан в не булеан пропсе
         className={`navigation__link ${location === "/" ? "activeLink" : null}`}
       >
         <li>

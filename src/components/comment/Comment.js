@@ -5,34 +5,36 @@ import Buttons from "../buttons/Buttons";
 import EditCommentPopup from "../editCommentPopup/EditCommentPopup";
 import defaultImg from "../../images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg";
 
-function Comment(
-    comment,
+function Comment({
+    text,
+    deleteComment1,
+    adId,
+    img,
+    commentId,
+    authorId: userId,
+    authorName,
+    currentUserId: user,
     username,
     password,
-    setComments,
-    handleEditCommPopupOpen,
-    isComPopupOpen,
-    onClose,
-    user,
-    deleteComment1
-) {
-    const [adComment, setAdComment] = useState({});
-    const currentCommentid = comment.commentId;
-    console.log('Comment', deleteComment1);
+}) {
 
+    const [isEdit, setEdit] = useState(false);
+    const [adComment, setAdComment] = useState({});
+    // console.log('Comment', adComment);
+    const toggleEdit = () => setEdit(!isEdit);
     useEffect(() => {
         api
-            .getComment(comment.adId, comment.commentId, comment.username, comment.password)
+            .getComment(adId, commentId, username, password)
             .then((res) => {
                 setAdComment(res);
             })
             .catch((error) => console.log("error", error));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [comment.adId, comment.commentId, comment]);
+    }, [adId, commentId, text]);
 
     const handleEditComment = (data) => {
         api
-            .editComment(comment.adId, comment.commentId, data, comment.username, comment.password)
+            .editComment(adId, commentId, data, username, password)
             .then((res) => {
                 setAdComment(res);
             })
@@ -41,53 +43,43 @@ function Comment(
 
     const onDelete = (e) => {
         e.preventDefault();
-        deleteComment1(comment.adId, comment.commentId);
-        // api
-        //     .deleteComment(comment.adId, comment.commentId, comment.username, comment.password)
-        //     .then(() => {
-        //         setComments((comments) =>
-        //             comments.filter((i) => i.id !== comment.commentId)
-        //         );
-        //     })
-        //     .catch((error) => console.log("error", error));
+        deleteComment1(adId, commentId);
     };
 
     return (
-        <li className="comment" key={comment.commentId}>
+        <li className="comment" key={commentId}>
             <div className="comment-box">
-                {comment.img ? (
-                    <img src={comment.img} alt="user-img" className="comment-img"/>
+                {img ? (
+                    <img src={img} alt="user-img" className="comment-img"/>
                 ) : (
                     <img src={defaultImg} alt="user-img" className="comment-img"/>
                 )}
                 <p className="comment-text comment__author-text">
-                    {comment.authorName}
+                    {authorName}
                 </p>
             </div>
             <div className="commentBox">
-                <p className="comment-text comment-message">{comment.text}</p>
-                {user === comment.userId ? (
+                <p className="comment-text comment-message">{adComment.text}</p>
+                {user === userId ? (
                     <Buttons
                         className="comment-buttons"
                         classButton="comment-button"
-                        onOpen={
-                            currentCommentid === adComment.id ? handleEditCommPopupOpen : null
-                        }
+                        onOpen={toggleEdit}
                         onSubmit={onDelete}
-                        key={comment.id}
+                        key={`${commentId}-btn`}
                     />
                 ) : null}
                 <EditCommentPopup
-                    onClose={onClose}
-                    isOpen={isComPopupOpen}
-                    id={comment.adId}
+                    onClose={toggleEdit}
+                    isOpen={isEdit}
+                    id={adId}
                     getComm={adComment}
                     handleEdit={handleEditComment}
                     userId={user}
-                    commentUserId={comment.userId}
-                    commentId={comment.commentId}
-                    currentComId={adComment.id}
-                    key={comment.id}/>
+                    commentUserId={userId}
+                    commentId={commentId}
+                    currentComId={adComment.pk}
+                    key={`${commentId}-popup`}/>
             </div>
         </li>
     );

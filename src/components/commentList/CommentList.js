@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Comment from "../comment/Comment";
 
 function CommentList({ 
@@ -9,9 +9,11 @@ function CommentList({
     username, 
     password, 
     handleEditCommPopupOpen, 
-    deleteComment } ) 
-  {
-  console.log('CommentList', deleteComment);
+    deleteComment,
+    onClose,
+    isComPopupOpen
+}) {
+  //console.log('CommentList', deleteComment);
 
   return (
     <>
@@ -19,22 +21,24 @@ function CommentList({
         <p className="comment-text">Оставьте комментарий первым.</p>
       ) : (
         <ul className="comment-list">
-          {comments.map((comment) => {
+          {comments.map((comment, ind) => {
             return (
               <Comment
-                key={comment.id}
+                isComPopupOpen={isComPopupOpen}
+                key={`${comment.pk}-par-${ind}`}
                 text={comment.text}
                 deleteComment1={deleteComment}
                 adId={adId}
                 img={comment.author_image}
-                commentId={comment.id}
-                userId={comment.author_id}
+                authorName={comment.author_first_name}
+                commentId={comment.pk}
+                authorId={comment.author}
                 setComments={setComments}
                 handleEditCommPopupOpen={handleEditCommPopupOpen}
-                authorName={comment.author_first_name}
-                user={user}
+                currentUserId={user}
                 username={username}
                 password={password}
+                onClose={onClose}
               />
             );
           })}

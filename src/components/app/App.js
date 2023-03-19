@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import auth from "../../utils/auth";
 import api from "../../utils/api";
@@ -12,23 +12,42 @@ import SinglePage from "../singlePage/SinglePage";
 import PopupNavigation from "../popopNavigation/PopupNavigation";
 import NewAdd from "../newAdd/NewAdd";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
+import {connect} from 'react-redux';
 
-function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
+import {loadedUser, userAuth, userLogOut} from '../../redux/actions';
+
+import {REDUCERS as adsReducers} from '../../redux/reducers/ads/ads'
+import {REDUCERS as userAdsReducers} from '../../redux/reducers/ads/userAds'
+import {REDUCERS as defaultAdsReducers} from '../../redux/reducers/ads/adsDefault'
+
+function App({
+  onLoadUser,
+  onUserAuth,
+  onLogOut,
+  onLoadUserAds,
+  onLoadAds,
+  onAddAds,
+  onLoadDefaultAds,
+  userInfo: storeUserInfo,
+  ads: storeAds,
+  adsDefault: storeAdsDefault,
+  userAds: storeUserAds,
+}) {
+  const [isAuthorized, setIsAuthorized] = useState(!!storeUserInfo.password);
   const [isLoading, setIsLoading] = useState(false);
   //user
-  const [userInfo, setUserInfo] = useState({});
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [userInfo, setUserInfo] = useState(storeUserInfo);
+  const [username, setUsername] = useState(storeUserInfo.username || "");
+  const [password, setPassword] = useState(storeUserInfo.password || "");
+  const [firstName, setFirstName] = useState(storeUserInfo.firstName || "");
+  const [lastName, setLastName] = useState(storeUserInfo.lastName || "");
+  const [phone, setPhone] = useState(storeUserInfo.phone || "");
   //ads
   const [ad, setAd] = useState("");
-  const [ads, setAds] = useState([]);
+  const [ads, setAds] = useState(storeAds);
   //const [filteredAds, setFilteredAds] = useState([]);
-  const [adsDefault, setAdsDefault] = useState([]);
-  const [userAds, setUserAds] = useState([]);
+  const [, setAdsDefault] = useState(storeAdsDefault);
+  const [userAds, setUserAds] = useState(storeUserAds);
   const [visiableAds, setVisiableAds] = useState(4);
   //popups
   const [isPopupNavigatorOpen, setIsPopupNavigatorOpen] = useState(false);
@@ -53,17 +72,9 @@ function App() {
     });
   }
 
-  function rend() {
-    if (localStorage.getItem('authTokens')) {
-      setUsername(JSON.parse(localStorage.getItem('authTokens')).username);
-      console.log(JSON.parse(localStorage.getItem('authTokens')).username);
-      setPassword(JSON.parse(localStorage.getItem('authTokens')).password);
-    }
-  }
-
   useEffect(() => {
-    console.log('useEffect1');
-    console.log('UseEffect', username, password);
+    //console.log('useEffect1');
+    //console.log('UseEffect', username, password);
     if (isAuthorized) {
       setIsLoading(true);
       Promise.all([
@@ -71,6 +82,9 @@ function App() {
         api.getUserInfo(username, password),
       ])
         .then(([usersAds, userInformation]) => {
+          onLoadUser(userInformation)
+          onLoadUserAds(usersAds.results || [])
+
           setUserAds(usersAds);
           setUserInfo(userInformation);
         })
@@ -83,12 +97,13 @@ function App() {
   //ads
   useEffect(() => {
     setIsLoading(true);
-    console.log(username, password);
+    //console.log(username, password);
     isAuthorized
       ? api
           .getHiddenAds(username, password)
           .then((response) => {
             setAds(response.results);
+            onLoadAds(response.results || [])
           })
           .catch((error) => console.log("error", error))
           .finally(() => setTimeout(() => setIsLoading(false), 500))
@@ -96,13 +111,14 @@ function App() {
           .getAds()
           .then((data) => {
             setAdsDefault(data.results);
+            onLoadDefaultAds(data.results || [])
           })
           .catch((error) => console.log("error", error))
           .finally(() => setTimeout(() => setIsLoading(false), 500));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthorized]);
 
-  let filteredAds = isAuthorized ? searcAd(ads, ad) : searcAd(adsDefault, ad);
+  let filteredAds = isAuthorized ? searcAd(storeAds, ad) : searcAd(storeAdsDefault, ad);
 
   const handleRegistration = ({ username, password, firstName, lastName, phone, role }) => {
     setIsLoading(true);
@@ -143,14 +159,17 @@ function App() {
           password
       )
       .then((res) => {
-        setUserInfo({
+        let user = {
           ...userInfo,
           firstName: res.firstName,
           lastName: res.lastName,
           phone: res.phone,
           username: res.email,
           id: res.id,
-        });
+        };
+
+        onLoadUser(user)
+        setUserInfo(user);
       })
       .catch((error) => {
         console.log("error", error);
@@ -160,7 +179,7 @@ function App() {
   const handleUpdatePassword = (newPassword) => {
     api
       .updatePassword(username, password, newPassword)
-      .then((res) => {
+      .then(() => {
         signOut();
       })
       .catch((error) => {
@@ -187,13 +206,16 @@ function App() {
       .authentication(data)
       .then((res) => {
         if (res.status === 200) {
-          setUsername(data.username);
-          setPassword(data.password);
-          setFirstName(data.firstName);
-          setLastName(data.lastName);
-          setPhone(data.phone);
-          localStorage.setItem("authTokens", JSON.stringify(data));
+          let {username, password, firstName, lastName, phone} = data;
+
+          onUserAuth({username, password});
+          setUsername(username);
+          setPassword(password);
+          setFirstName(firstName);
+          setLastName(lastName);
+          setPhone(phone);
           setIsAuthorized(true);
+
           navigate("/");
         }
       })
@@ -222,13 +244,14 @@ function App() {
       .addAd(data, username, password)
       .then((newAd) => {
         setAds([newAd, ...ads]);
+        onAddAds(newAd);
       })
       .catch((error) => console.log("error", error))
       .finally(() => setTimeout(() => setIsLoading(false), 500));
   }
 
   function signOut() {
-    localStorage.removeItem("authTokens");
+    onLogOut();
     setAd([]);
     setAds([]);
     setIsAuthorized(false);
@@ -236,10 +259,6 @@ function App() {
     setUserInfo([]);
     window.location.reload();
     navigate("/sign-in");
-  }
-
-  if (localStorage.getItem('authTokens')) {
-    // setIsAuthorized(true);
   }
 
   //Open/close navigation when page's size max-width 840px
@@ -331,7 +350,6 @@ function App() {
                   isOpen={isUserPhotoPopupOpen}
                   onOpen={handleOpenUserPhotoPopup}
                   onClose={closePopup}
-                  userInfo={userInfo}
                   userAds={userAds}
                   isLoading={isLoading}
                   handleUpdateUser={handleUpdateUser}
@@ -431,4 +449,37 @@ function App() {
   );
 }
 
-export default App;
+const ConnectApp = connect(
+    (state) => ({...state}),
+    (dispatch) => ({
+      onLoadUser(user) {
+        dispatch(loadedUser(user))
+      },
+      onUserAuth(user) {
+        dispatch(userAuth(user))
+      },
+      onLogOut() {
+        dispatch(userLogOut())
+      },
+      onLoadUserAds(ads) {
+        dispatch(userAdsReducers.LOAD(ads))
+      },
+      onAddUserAds(newAd) {
+        dispatch(userAdsReducers.ADD(newAd))
+      },
+      onLoadAds(ads) {
+        dispatch(adsReducers.LOAD(ads))
+      },
+      onAddAds(newAd) {
+        dispatch(adsReducers.ADD(newAd))
+      },
+      onLoadDefaultAds(ads) {
+        dispatch(defaultAdsReducers.LOAD(ads))
+      },
+      onAddDefaultAds(newAd) {
+        dispatch(defaultAdsReducers.ADD(newAd))
+      }
+    })
+)(App)
+
+export default ConnectApp;
