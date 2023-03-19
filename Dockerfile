@@ -1,8 +1,7 @@
-FROM node:current-alpine3.17 as build
+FROM node:18.0.0 as build
 WORKDIR /build
 ENV PATH /build/node_modules/.bin:$PATH
 COPY ./ ./
-RUN apk update
 RUN npm install
 RUN npm run build
 
