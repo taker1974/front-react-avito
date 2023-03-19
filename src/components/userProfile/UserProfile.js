@@ -5,9 +5,22 @@ import Ads from "../ads/Ads";
 import Preloader from "../preloader/Preloader";
 import EditUserImgPopup from "../editUserImgPopup/EditUserImgPopup";
 import defaultImg from "../../images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg";
+import {connect} from 'react-redux';
 
-function UserProfile(props) {
-  console.log('userProfile', props);
+function UserProfile({
+    userInfo,
+    onOpen,
+    handleUpdateUser,
+    handleUpdatePassword,
+    isLoading,
+    userAds,
+    visiableAds,
+    showMoreAds,
+    isOpen,
+    onClose,
+    handleUpdateUserPhoto,
+}) {
+  // console.log('userProfile', props);
   return (
     <main className="main">
       <section className="userProfile-grid padding">
@@ -16,17 +29,17 @@ function UserProfile(props) {
             className="profile-avatar"
             style={{
               backgroundImage: `url(${
-                props.userInfo.image ? ("http://localhost:8080" + props.userInfo.image) : defaultImg
+                userInfo.image ? (`http://${userInfo.username}:${userInfo.password}@localhost:8080` + userInfo.image) : defaultImg
               })`,
             }}
           >
-            <button className="profile-avatar__button" onClick={props.onOpen} />
+            <button className="profile-avatar__button" onClick={onOpen} />
           </div>
         </div>
         <Profile
-          userInfo={props.userInfo}
-          handleUpdateUser={props.handleUpdateUser}
-          handleUpdatePassword={props.handleUpdatePassword}
+          userInfo={userInfo}
+          handleUpdateUser={handleUpdateUser}
+          handleUpdatePassword={handleUpdatePassword}
         />
       </section>
       <div className="userProfile-container">
@@ -36,24 +49,32 @@ function UserProfile(props) {
         </Link>
       </div>
       <section className="pagination-container padding"></section>
-      {props.isLoading ? (
+      {isLoading ? (
         <Preloader />
       ) : (
         <Ads
-          ads={[]}
-          // ads={props.userAds.results}
-          visiableAds={props.visiableAds}
-          showMoreAds={props.showMoreAds}
-          isAuthorized={localStorage.getItem('authTokens') ? true : false}
+          ads={userAds || []}
+          visiableAds={visiableAds}
+          showMoreAds={showMoreAds}
+          isAuthorized={!!userInfo.password}
         />
       )}
       <EditUserImgPopup
-        isOpen={props.isOpen}
-        onClose={props.onClose}
-        editUserPhoto={props.handleUpdateUserPhoto}
+        isOpen={isOpen}
+        onClose={onClose}
+        editUserPhoto={handleUpdateUserPhoto}
       />
     </main>
   );
 }
 
-export default UserProfile;
+const ConnectUser = connect(
+    (state) => {
+        return {
+            userInfo: {...state.userInfo},
+            userAds: [...state.userAds]
+        }
+    }
+)(UserProfile)
+
+export default ConnectUser;

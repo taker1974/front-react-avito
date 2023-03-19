@@ -6,22 +6,26 @@ import Buttons from "../buttons/Buttons";
 import api from "../../utils/api";
 import Preloader from "../preloader/Preloader";
 import EditPhotoAdPopup from "../editPhotoAdPopup/EditPhotoAdPopup";
+import {connect} from 'react-redux';
+import {REDUCERS as adsReducers} from '../../redux/reducers/ads/ads'
+import {REDUCERS as userAdsReducers} from '../../redux/reducers/ads/userAds'
+import {REDUCERS as defaultAdsReducers} from '../../redux/reducers/ads/adsDefault'
 
 function SinglePage(props) {
   const { id } = useParams();
   const [ad, setAd] = useState({});
   const [comments, setComments] = useState([]);
   let adId = id;
-  console.log('Single Page', props, ad);
+  // console.log('Single Page', props, ad);
 
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (props.isAuthorized) {
       props.setIsLoading(true);
       Promise.all([
-        api.getComments(adId, props.username, props.password),
-        api.getAd(id, props.username, props.password),
+        api.getComments(adId, props.userInfo.username, props.userInfo.password),
+        api.getAd(id, props.userInfo.username, props.userInfo.password),
       ])
         .then(([commentsData, adData]) => {
           setComments(commentsData.results);
@@ -36,11 +40,14 @@ function SinglePage(props) {
   function handleEditAdd(data) {
     props.setIsLoading(true);
     api
-      .editAdd(id, data, props.username, props.password)
-      .then((data) => {
+      .editAdd(id, data, props.userInfo.username, props.userInfo.password)
+      .then((result) => {
+        let combinedAd = {...ad, ...data};
+        setAd(combinedAd);
         props.setAds((ads) =>
-          ads.filter((i) => (i.id === ad.id ? data : null))
+          ads.filter((i) => (i.id === ad.id ? combinedAd : null))
         );
+        props.onUpdateAdFromStore(parseInt(id), data)
       })
       .catch((error) => console.log("error", error))
       .finally(() => setTimeout(() => props.setIsLoading(false), 700));
@@ -48,7 +55,7 @@ function SinglePage(props) {
 
   function handleEditPhotoAdd(image) {
     api
-      .editAddPhoto(id, image, props.username, props.password)
+      .editAddPhoto(id, image, props.userInfo.username, props.userInfo.password)
       .then((image) => {
         props.setAds((ads) =>
           ads.filter((i) => (i.id === ad.id ? image : null))
@@ -57,19 +64,20 @@ function SinglePage(props) {
       .catch((error) => console.log("error", error));
   }
 
-  function handleDeleteAdd(e) {
+  function handleDeleteAdd() {
     api
-      .deleteAdd(id, props.username, props.password)
+      .deleteAdd(id, props.userInfo.username, props.userInfo.password)
       .then(() => {
-        props.setAds((ads) => ads.filter((i) => i.id !== ad.id));
-        history.push("/");
+        props.setAds((ads) => ads.filter((i) => i.pk !== ad.pk));
+        props.onDeleteAdFromStore(parseInt(id))
+        navigate("/");
       })
       .catch((error) => console.log("error", error));
   }
 
   function handleAddComment(data) {
     api
-      .addComment(id, data, props.username, props.password)
+      .addComment(id, data, props.userInfo.username, props.userInfo.password)
       .then((newComment) => {
         setComments([newComment, ...comments]);
       })
@@ -78,9 +86,9 @@ function SinglePage(props) {
   
   function handleDeleteComment(adId, commentId) {
     api
-      .deleteComment(adId, commentId, props.username, props.password)
-      .then((newComment) => {
-        // setComments([newComment, ...comments]);
+      .deleteComment(adId, commentId, props.userInfo.username, props.userInfo.password)
+      .then(() => {
+        setComments(comments.filter((item) => item.pk !== commentId));
       })
       .catch((error) => console.log("error", error));
   }
@@ -96,7 +104,7 @@ function SinglePage(props) {
             <div className="cardInformation__container">
               {ad.image === null ? (
                 <div className="cardInformation__img-null">
-                  {props.user === ad.author_id ? (
+                  {props.userInfo.username === ad.email ? (
                     <button
                       onClick={props.handleOpenEditPhotoPopup}
                       className="cardInformation__img-change"
@@ -109,7 +117,7 @@ function SinglePage(props) {
                   style={{ backgroundImage: `url(${"http://localhost:8080"+ad.image})` }}
                   className="cardInformation__img"
                 >
-                  {props.user === ad.author_id ? (
+                  {props.userInfo.username === ad.email ? (
                     <button
                       onClick={props.handleOpenEditPhotoPopup}
                       className="cardInformation__img-change"
@@ -118,7 +126,7 @@ function SinglePage(props) {
                   ) : null}
                 </div>
               )}
-              {props.user !== ad.author_id ? null : (
+              {props.userInfo.username !== ad.email ? null : (
                 <Buttons
                   user={props.user}
                   product={ad}
@@ -134,11 +142,6 @@ function SinglePage(props) {
                   <p className="cardInformation__tel">{ad.author_first_name}</p>
                 </div>
                 <p className="cardInformation__price">{ad.price} &#8381;</p>
-                {props.username == ad.email ? (
-                  <div className="buttons__container">
-                    <button className="editAd">Edit</button><button className="deleteAd">Delete</button>
-                  </div>
-                ) : (<div></div>)}
               </div>
               <div className="cardInformation__box">
                 <p className="cardInformation__description">{ad.description}</p>
@@ -151,9 +154,10 @@ function SinglePage(props) {
                 handleEditCommPopupOpen={props.handleEditCommPopupOpen}
                 setComments={setComments}
                 user={props.user}
-                username={props.username}
-                password={props.password}
+                username={props.userInfo.username}
+                password={props.userInfo.password}
                 adId={adId}
+                onClose={props.onClose}
               />
             </div>
             <EditAdPopup
@@ -176,4 +180,20 @@ function SinglePage(props) {
   );
 }
 
-export default SinglePage;
+const ConnectedSinglePage = connect(
+    (state) => ({userInfo: {...state.userInfo}}),
+    (dispatch) => ({
+        onDeleteAdFromStore(delId) {
+            dispatch(defaultAdsReducers.DELETE(delId));
+            dispatch(userAdsReducers.DELETE(delId));
+            dispatch(adsReducers.DELETE(delId));
+        },
+        onUpdateAdFromStore(adId, newData) {
+            dispatch(defaultAdsReducers.EDIT(adId, newData));
+            dispatch(userAdsReducers.EDIT(adId, newData));
+            dispatch(adsReducers.EDIT(adId, newData));
+        }
+    })
+)(SinglePage)
+
+export default ConnectedSinglePage;

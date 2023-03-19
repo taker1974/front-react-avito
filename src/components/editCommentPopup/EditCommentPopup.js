@@ -7,11 +7,7 @@ function EditCommentPopup({
   onClose,
   getComm,
   id,
-  commentUserId,
-  userId,
   handleEdit,
-  commentId,
-  currentComId,
 }) {
   const [input, setInput] = useState("");
   const { values, handleChange, errors, isValid } = useFormValidation();
@@ -28,13 +24,15 @@ function EditCommentPopup({
       text: values.text,
     });
     onClose();
-    window.location.reload();
+   //  плохо тк, перезагрузит страницу раньше чем будет отправлен запрос на update
+    // то есть прервет запрос на бэк
+    // window.location.reload();
   }
 
   return (
     <div
       className={`popup ${
-        isOpen && userId === commentUserId && commentId === currentComId
+        isOpen // тут работаем с конкретным компонентом не с массивом по этому открываем только его(управляет parent)
           ? "popup_is-opened"
           : ""
       }`}

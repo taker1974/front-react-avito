@@ -3,10 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import Ad from "../ad/Ad";
 import AdsCardListButton from "../adsCardListButton/AdsCardListButton";
 
-function Ads({ ads, isAuthorized, visiableAds, showMoreAds }) {
+function Ads({ads, isAuthorized, visiableAds, showMoreAds}) {
   let location = useLocation().pathname;
 
-  console.log('location', location, ads);
+  // console.log('location', location, ads);
   return (
     <section className={`ads ${location === "/profile" ? "padding" : ""}`}>
       {!ads.length ? (
@@ -20,13 +20,13 @@ function Ads({ ads, isAuthorized, visiableAds, showMoreAds }) {
           {ads.slice(0, visiableAds).map((ad) => {
             return (
               <Link
-                key={ad.id}
-                to={localStorage.getItem('authTokens') ? `ads/${ad.id}` : "/"}
+                key={ad.pk}
+                to={isAuthorized ? `ads/${ad.pk}` : "/"}
                 className="ads__link"
               >
                 <Ad
-                  key={ad.id}
-                  id={ad.id}
+                  key={ad.pk}
+                  id={ad.pk}
                   title={ad.title}
                   image={ad.image}
                   price={ad.price}

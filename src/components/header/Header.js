@@ -7,7 +7,7 @@ import asd from "../../images/tear-off-ads.png";
 import sandwich from "../../images/sandwich__icon.png";
 
 function Header({ onOpen, isAuthorized, signOut }) {
-  console.log('Header', isAuthorized);
+  //console.log('Header', isAuthorized);
   let location = useLocation().pathname;
   return (
     <header className="header">

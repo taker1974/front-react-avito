@@ -3,18 +3,19 @@ import CommentList from "../commentList/CommentList";
 import CommentForm from "../comentForm/CommentForm";
 
 function CommentContainer({
-            comments,
-            addComment,
-            deleteComment,
-            setComments,
-            user,
-            isComPopupOpen,
-            handleEditCommPopupOpen,
-            username,
-            password,
-            adId
-        }) {
-            console.log('CommentContainer', deleteComment);
+    comments,
+    addComment,
+    deleteComment,
+    setComments,
+    user,
+    isComPopupOpen,
+    handleEditCommPopupOpen,
+    username,
+    password,
+    adId,
+    onClose
+}) {
+            //console.log('CommentContainer', deleteComment);
     return (
         <div className="commentContainer">
             <h2 className="commentContainer__title">Отзывы</h2>
@@ -27,6 +28,8 @@ function CommentContainer({
                 isComPopupOpen={isComPopupOpen}
                 adId={adId}
                 deleteComment={deleteComment}
+                handleEditCommPopupOpen={handleEditCommPopupOpen}
+                onClose={onClose}
             />
             <CommentForm
                 addComment={addComment}

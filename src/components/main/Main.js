@@ -5,8 +5,7 @@ import Ads from "../ads/Ads";
 
 function Main(props) {
   const allAds = props.isAuthorized ? props.ads : props.adsDefault;
-  console.log('Main', props, allAds);
-
+  // console.log('Main', props, allAds);
   return (
     <main className="main">
       <Promo ad={props.ad} setAd={props.setAd} />
