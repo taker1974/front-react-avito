@@ -3,8 +3,8 @@ import MediaQuery from "react-responsive";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Button from "../button/Button";
-import asd from "../../images/tear-off-ads.png";
-import sandwich from "../../images/sandwich__icon.png";
+import asd from "/src/images/tear-off-ads.png";
+import sandwich from "/src/images/sandwich__icon.png";
 
 function Header({ onOpen, isAuthorized, signOut }) {
   //console.log('Header', isAuthorized);

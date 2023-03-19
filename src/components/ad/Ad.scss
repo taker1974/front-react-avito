@@ -32,7 +32,7 @@
 }
 
 .ad-img_null {
-  background-image: url(../../images/malvestida-u79wy47kvVs-unsplash.jpg);
+  background-image: url(/src/images/malvestida-u79wy47kvVs-unsplash.jpg);
   background-size: cover;
   border-radius: 20px 20px 0 0;
   background-repeat: no-repeat;
@@ -64,7 +64,7 @@
 .ad__title {
   font-size: 1.2em;
   line-height: 26px;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   padding: 0;
   margin-bottom: 8px;
   letter-spacing: -0.04em;
@@ -74,5 +74,5 @@
   font-size: 1.1em;
   line-height: 16px;
   letter-spacing: -0.04em;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
 }
