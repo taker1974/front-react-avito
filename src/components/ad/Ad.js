@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../images/malvestida-u79wy47kvVs-unsplash.jpg";
 import {connect} from 'react-redux';
 
 function Ad({id, image, title, price, userInfo: {username, password}}) {
@@ -10,7 +9,7 @@ function Ad({id, image, title, price, userInfo: {username, password}}) {
       ) : image === null ? (
         <div className="ad-img_null" />
       ) : (
-        <img src={img} className="ad-img" alt="product img" />
+        <img src={'images/malvestida-u79wy47kvVs-unsplash.jpg'} className="ad-img" alt="product img" />
       )}
       <div className="ad__description">
         <h2 className="ad__title">{title}</h2>

@@ -4,7 +4,6 @@ import Profile from "../profile/Profile";
 import Ads from "../ads/Ads";
 import Preloader from "../preloader/Preloader";
 import EditUserImgPopup from "../editUserImgPopup/EditUserImgPopup";
-import defaultImg from "../../images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg";
 import {connect} from 'react-redux';
 
 function UserProfile({
@@ -29,7 +28,7 @@ function UserProfile({
             className="profile-avatar"
             style={{
               backgroundImage: `url(${
-                userInfo.image ? (`http://${userInfo.username}:${userInfo.password}@localhost:8080` + userInfo.image) : defaultImg
+                userInfo.image ? (`http://${userInfo.username}:${userInfo.password}@localhost:8080` + userInfo.image) : 'images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'
               })`,
             }}
           >

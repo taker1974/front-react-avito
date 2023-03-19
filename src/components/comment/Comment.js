@@ -3,7 +3,6 @@ import api from "../../utils/api";
 
 import Buttons from "../buttons/Buttons";
 import EditCommentPopup from "../editCommentPopup/EditCommentPopup";
-import defaultImg from "../../images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg";
 
 function Comment({
     text,
@@ -52,7 +51,7 @@ function Comment({
                 {img ? (
                     <img src={img} alt="user-img" className="comment-img"/>
                 ) : (
-                    <img src={defaultImg} alt="user-img" className="comment-img"/>
+                    <img src={'images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
                 )}
                 <p className="comment-text comment__author-text">
                     {authorName}
