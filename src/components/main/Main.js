@@ -12,7 +12,7 @@ function Main(props) {
       {props.isLoading ? (
         <Preloader />
       ) : allAds.length === 0 ? (
-        <p className="error-paragraph">По Вашему запросу ничего не найденно</p>
+        <p className="error-paragraph">По вашему запросу ничего не найдено</p>
       ) : (
         <Ads
           isAuthorized={props.isAuthorized}

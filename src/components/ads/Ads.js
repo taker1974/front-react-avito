@@ -10,7 +10,7 @@ function Ads({ads, isAuthorized, visiableAds, showMoreAds}) {
   return (
     <section className={`ads ${location === "/profile" ? "padding" : ""}`}>
       {!ads.length ? (
-        <p>У Вас еще нет обьявлений.</p>
+        <p>У вас еще нет обьявлений.</p>
       ) : (
         <ul
           className={`ads__container ${
