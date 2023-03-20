@@ -475,7 +475,7 @@ components:
           type: string
         phone:
           type: string
-        role:
+        role: #todo: need to add input it in front-side
           type: string
           enum:
             - USER
@@ -544,14 +544,14 @@ components:
           type: string
         phone:
           type: string
-        regDate:
+        regDate: #todo: need to add handling in front-side
           type: string
         image:
           type: string
     ResponseWrapperAds:
       type: object
       properties:
-        count:
+        count: #todo: need to add handling in front-side (pagination?)
           type: integer
           format: int32
         results:
@@ -561,17 +561,17 @@ components:
     FullAds:
       type: object
       properties:
-        authorFirstName:
+        authorFirstName: #todo: need to add handling in front-side
           type: string
-        authorLastName:
+        authorLastName: #todo: need to add handling in front-side
           type: string
         description:
           type: string
-        email:
+        email: #todo: need to add handling in front-side
           type: string
         image:
           type: string
-        phone:
+        phone: #todo: need to add handling in front-side
           type: string
         id:
           type: integer
@@ -584,7 +584,7 @@ components:
     ResponseWrapperComment:
       type: object
       properties:
-        count:
+        count: #todo: need to add handling in front-side (pagination?)
           type: integer
           format: int32
         results:
