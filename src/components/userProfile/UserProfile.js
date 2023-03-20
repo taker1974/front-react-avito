@@ -5,6 +5,7 @@ import Ads from "../ads/Ads";
 import Preloader from "../preloader/Preloader";
 import EditUserImgPopup from "../editUserImgPopup/EditUserImgPopup";
 import {connect} from 'react-redux';
+import useImgFromSecureArea from '../../utils/hooks/useSecureData'
 
 function UserProfile({
     userInfo,
@@ -19,6 +20,8 @@ function UserProfile({
     onClose,
     handleUpdateUserPhoto,
 }) {
+    let userImage = useImgFromSecureArea(userInfo.image, userInfo.username, userInfo.password);
+
   // console.log('userProfile', props);
   return (
     <main className="main">
@@ -28,7 +31,7 @@ function UserProfile({
             className="profile-avatar"
             style={{
               backgroundImage: `url(${
-                userInfo.image ? (`http://${userInfo.username}:${userInfo.password}@localhost:8080` + userInfo.image) : 'images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'
+                userImage ? userImage : 'src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'
               })`,
             }}
           >

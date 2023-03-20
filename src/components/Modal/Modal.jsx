@@ -1,5 +1,5 @@
 import './style.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 const Modal = ( { isVisible, closeModal, updatePassword}) => {
     const [password, setPassword] = useState('');
