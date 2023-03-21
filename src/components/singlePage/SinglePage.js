@@ -138,7 +138,6 @@ function SinglePage(props) {
               )}
               <div className="cardInformation__box">
                 <div className="cardInformation__box_second">
-                  <p className="cardInformation__tel">{ad.phone}</p>
                   <p className="cardInformation__tel">{ad.author_first_name}</p>
                 </div>
                 <p className="cardInformation__price">{ad.price} &#8381;</p>

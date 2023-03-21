@@ -12,7 +12,6 @@ function Ad({id, image, title, price, description}) {
       )}
       <div className="ad__description">
         <h2 className="ad__title">{title}</h2>
-        <h3 className="ad__title">{description}</h3>
         <p className="ad__price">{price} &#8381;</p>
       </div>
     </li>
