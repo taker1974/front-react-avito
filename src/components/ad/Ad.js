@@ -1,11 +1,10 @@
 import React from "react";
-import {connect} from 'react-redux';
 
-function Ad({id, image, title, price, userInfo: {username, password}}) {
+function Ad({id, image, title, price, description}) {
   return (
     <li className="ad" key={id}>
       {image ? (
-        <img src={`http://${username}:${password}@localhost:8080`+image} className="ad-img" alt="product img" />
+        <img src={`http://localhost:8080`+image} className="ad-img" alt="product img" />
       ) : image === null ? (
         <div className="ad-img_null" />
       ) : (
@@ -13,16 +12,11 @@ function Ad({id, image, title, price, userInfo: {username, password}}) {
       )}
       <div className="ad__description">
         <h2 className="ad__title">{title}</h2>
+        <h3 className="ad__title">{description}</h3>
         <p className="ad__price">{price} &#8381;</p>
       </div>
     </li>
   );
 }
 
-const ConnectedAd = connect(
-    (state) => ({
-        userInfo: {...state.userInfo}
-    })
-)(Ad)
-
-export default ConnectedAd;
+export default Ad;

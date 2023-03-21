@@ -523,8 +523,6 @@ components:
         author:
           type: integer
           format: int32
-        createdAt:
-          type: string
         id:
           type: integer
           format: int32
@@ -543,8 +541,6 @@ components:
         lastName:
           type: string
         phone:
-          type: string
-        regDate:
           type: string
         image:
           type: string
