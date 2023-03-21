@@ -549,8 +549,9 @@ components:
           type: string
           description: 'имя создателя комментария'
         createdAt:
-          type: string
-          description: 'дата и время создания комментария'
+          type: integer
+          format: int64
+          description: 'дата и время создания комментария в миллисекундах с 00:00:00 01.01.1970'
         pk:
           type: integer
           format: int32

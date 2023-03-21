@@ -40,7 +40,7 @@ function Comment({
         <li className="comment" key={commentId}>
             <div className="comment-box">
                 {img ? (
-                    <img src={img} alt="user-img" className="comment-img"/>
+                    <img src={`http://localhost:8080` + img} alt="user-img" className="comment-img"/>
                 ) : (
                     <img src={'/src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
                 )}
