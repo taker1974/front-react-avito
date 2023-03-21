@@ -29,10 +29,11 @@ function CommentList({
                 text={comment.text}
                 deleteComment1={deleteComment}
                 adId={adId}
-                img={comment.author_image}
-                authorName={comment.author_first_name}
-                commentId={comment.pk}
+                img={comment.authorImage}
+                authorName={comment.authorFirstName}
+                commentId={comment.pk || comment.id}
                 authorId={comment.author}
+                createdAt={comment.createdAt}
                 setComments={setComments}
                 handleEditCommPopupOpen={handleEditCommPopupOpen}
                 currentUserId={user}

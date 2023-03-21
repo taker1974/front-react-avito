@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import api from "../../utils/api";
 
 import Buttons from "../buttons/Buttons";
@@ -8,6 +8,7 @@ function Comment({
     text,
     deleteComment1,
     adId,
+    createdAt,
     img,
     commentId,
     authorId: userId,
@@ -16,20 +17,10 @@ function Comment({
     username,
     password,
 }) {
-
+    const commentDate = (new Date(createdAt));
     const [isEdit, setEdit] = useState(false);
-    const [adComment, setAdComment] = useState({});
-    // console.log('Comment', adComment);
+    const [, setAdComment] = useState({});
     const toggleEdit = () => setEdit(!isEdit);
-    useEffect(() => {
-        api
-            .getComment(adId, commentId, username, password)
-            .then((res) => {
-                setAdComment(res);
-            })
-            .catch((error) => console.log("error", error));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [adId, commentId, text]);
 
     const handleEditComment = (data) => {
         api
@@ -54,11 +45,12 @@ function Comment({
                     <img src={'/src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
                 )}
                 <p className="comment-text comment__author-text">
-                    {authorName}
+                    {authorName || 'Комментатор'}
+                    <span>{commentDate.toLocaleString()}</span>
                 </p>
             </div>
             <div className="commentBox">
-                <p className="comment-text comment-message">{adComment.text}</p>
+                <p className="comment-text comment-message">{text}</p>
                 {user === userId ? (
                     <Buttons
                         className="comment-buttons"
@@ -72,12 +64,12 @@ function Comment({
                     onClose={toggleEdit}
                     isOpen={isEdit}
                     id={adId}
-                    getComm={adComment}
+                    commentText={text}
                     handleEdit={handleEditComment}
                     userId={user}
                     commentUserId={userId}
                     commentId={commentId}
-                    currentComId={adComment.pk}
+                    currentComId={commentId}
                     key={`${commentId}-popup`}/>
             </div>
         </li>

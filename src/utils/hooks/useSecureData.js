@@ -4,7 +4,9 @@ import api from '../api';
 
 export default (userImagePath, username, password) => {
 	let [imageData, setImageData] = useState('');
-	if (!userImagePath)
+	if (!userImagePath) {
+		return null
+	}
 	useEffect(() => {
 		if (userImagePath.length > 0) {
 			api.getUserPhoto(userImagePath, username, password)
@@ -18,7 +20,7 @@ export default (userImagePath, username, password) => {
 				})
 			;
 		}
-	}, [imageData])
+	}, [imageData]);
 
 	return [imageData];
 }

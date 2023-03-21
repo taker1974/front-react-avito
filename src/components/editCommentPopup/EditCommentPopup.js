@@ -5,7 +5,7 @@ import useFormValidation from "../../utils/hooks/useFormValidation";
 function EditCommentPopup({
   isOpen,
   onClose,
-  getComm,
+  commentText,
   id,
   handleEdit,
 }) {
@@ -56,7 +56,7 @@ function EditCommentPopup({
               className="userForm__input"
               required
               value={values.text || ""}
-              placeholder={getComm.text}
+              placeholder={commentText}
               title="Название"
               name="text"
               type="text"
