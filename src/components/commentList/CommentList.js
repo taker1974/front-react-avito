@@ -33,6 +33,7 @@ function CommentList({
                 authorName={comment.author_first_name}
                 commentId={comment.pk}
                 authorId={comment.author}
+                createdAt={comment.createdAt}
                 setComments={setComments}
                 handleEditCommPopupOpen={handleEditCommPopupOpen}
                 currentUserId={user}
