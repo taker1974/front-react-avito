@@ -51,7 +51,7 @@ function Comment({
                 {img ? (
                     <img src={img} alt="user-img" className="comment-img"/>
                 ) : (
-                    <img src={'images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
+                    <img src={'/src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
                 )}
                 <p className="comment-text comment__author-text">
                     {authorName}

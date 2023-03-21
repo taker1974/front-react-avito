@@ -62,6 +62,21 @@ class Api {
         });
     }
 
+    getUserPhoto(imageId, username, password) {
+        return fetch(`${this._url}${imageId}`, {
+            headers: {
+                method: 'GET',
+                Authorization: "Basic " + base64.encode(`${username}:${password}`),
+            },
+        }).then(res => {
+            if (!res.ok) {
+                return Promise.reject(`Error: ${res.status}`)
+            }
+
+            return res.blob();
+        });
+    }
+
     //comment|comments
     getComments(adId, username, password) {
         return fetch(`${this._url}/ads/${adId}/comments`, {
