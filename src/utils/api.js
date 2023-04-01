@@ -88,7 +88,7 @@ class Api {
         }).then(this._handleResponse);
     }
 
-    getComment(adId, commentId, username, password) {
+    /*getComment(adId, commentId, username, password) {
         return fetch(`${this._url}/ads/${adId}/comments/${commentId}`, {
             method: "GET",
             headers: {
@@ -96,7 +96,7 @@ class Api {
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),
             },
         }).then(this._handleResponse);
-    }
+    }*/
 
     addComment(id, text, username, password) {
         return fetch(`${this._url}/ads/${id}/comments`, {

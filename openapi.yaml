@@ -19,10 +19,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewPassword'
         '401':
           description: Unauthorized
         '403':
@@ -308,33 +304,6 @@ paths:
         '401':
           description: Unauthorized
   /ads/{adId}/comments/{commentId}:
-    get:
-      tags:
-        - Комментарии
-      summary: 'Получить комментарий объявления'
-      operationId: getComment
-      parameters:
-        - name: adId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: commentId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Comment'
-        '404':
-          description: Not Found
     delete:
       tags:
         - Комментарии
