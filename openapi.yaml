@@ -493,7 +493,7 @@ components:
         image:
           type: string
           description: 'ссылка на картинку объявления'
-        id:
+        pk:
           type: integer
           format: int32
           description: 'id объявления'
@@ -564,7 +564,7 @@ components:
     FullAds:
       type: object
       properties:
-        id:
+        pk:
           type: integer
           format: int32
           description: 'id объявления'
