@@ -3,6 +3,7 @@ import api from "../../utils/api";
 
 import Buttons from "../buttons/Buttons";
 import EditCommentPopup from "../editCommentPopup/EditCommentPopup";
+import useImgFromSecureArea from "../../utils/hooks/useSecureData";
 
 function Comment({
     text,
@@ -36,14 +37,15 @@ function Comment({
         deleteComment1(adId, commentId);
     };
 
+    let userImage = useImgFromSecureArea(img, username, password);
     return (
         <li className="comment" key={commentId}>
             <div className="comment-box">
-                {img ? (
-                    <img src={`http://localhost:8080` + img} alt="user-img" className="comment-img"/>
-                ) : (
-                    <img src={'/src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
-                )}
+                style={{
+                  userImage: `url(${
+                      userImage ? userImage : 'src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'
+                  })`,
+                }}
                 <p className="comment-text comment__author-text">
                     {authorName || 'Комментатор'}
                     <span>{commentDate.toLocaleString()}</span>
