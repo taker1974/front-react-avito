@@ -173,6 +173,8 @@ paths:
                 $ref: '#/components/schemas/ResponseWrapperComment'
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
 
     post:
       tags:
@@ -200,6 +202,8 @@ paths:
                 $ref: '#/components/schemas/Comment'
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
 
   /ads/{id}:
     get:
@@ -223,6 +227,8 @@ paths:
                 $ref: '#/components/schemas/FullAds'
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
     delete:
       tags:
         - Объявления
@@ -242,6 +248,8 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not found
     patch:
       tags:
         - Объявления
@@ -271,6 +279,8 @@ paths:
           description: Forbidden
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
   /ads/{adId}/comments/{commentId}:
     delete:
       tags:
@@ -297,6 +307,8 @@ paths:
           description: Forbidden
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
     patch:
       tags:
         - Комментарии
@@ -331,6 +343,8 @@ paths:
           description: Forbidden
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
 
   /ads/me:
     get:
@@ -385,6 +399,8 @@ paths:
           description: Forbidden
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
 
 components:
   schemas:
