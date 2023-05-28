@@ -289,7 +289,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAds'
-        required: true
       responses:
         '200':
           description: OK
@@ -467,10 +466,6 @@ components:
           type: string
           description: 'логин'
     CreateAds:
-      required:
-        - description
-        - price
-        - title
       type: object
       properties:
         description:
