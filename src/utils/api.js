@@ -12,6 +12,13 @@ class Api {
         return Promise.reject(`Error: ${res.status}`);
     }
 
+    handleResponse(res) {
+        if (res.ok) {
+            return res;
+        }
+        return Promise.reject(`Error: ${res.status}`);
+    }
+
     //user
     getUserInfo = async (username, password) => {
         return await fetch(`${this._url}/users/me`, {
@@ -229,7 +236,7 @@ class Api {
                 "currentPassword": `${password}`,
                 "newPassword": `${newPassword}`,
             }),
-        }).then(this._handleResponse);
+        }).then(this.handleResponse);
     }
 
 }
