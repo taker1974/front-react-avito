@@ -20,7 +20,7 @@ function Registration({ handleRegistration }) {
       //Передаём значения управляемых компонентов во внешний обработчик
       username: values.username,
       password: values.password,
-      // role: values.role,
+      role: values.role,
       firstName: values.firstName,
       lastName: values.lastName,
       phone: values.phone
@@ -75,23 +75,23 @@ function Registration({ handleRegistration }) {
             {errors.password}
           </div>
         </label>
-        {/* <label className="form__label">
+        {<label className="form__label">
           <h2 className="form__description">Роль</h2>
-          <input
-            required
-            value={values.role || ""}
-            title="Роль"
-            name="role"
-            type="text"
-            pattern="^ADMIN|USER$"
-            placeholder="слово дожно состоять только из заглавныx букв"
-            className="form__input"
-            onChange={handleChangeInput}
-          />
+          <select
+              required
+              value={values.role || ""}
+              title="Роль"
+              name="role"
+              className="form__input"
+              onChange={handleChangeInput}
+          >
+            <option value="USER">Пользователь</option>
+            <option value="ADMIN">Администратор</option>
+          </select>
           <div className={`input-hidden ${errors.role ? "input-error" : ""}`}>
             {errors.role}
           </div>
-        </label> */}
+        </label>}
         <label className="form__label">
           <h2 className="form__description">Имя</h2>
           <input

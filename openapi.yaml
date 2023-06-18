@@ -47,14 +47,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UpdateUser'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UpdateUser'
         '401':
           description: Unauthorized
   /users/me/image:
@@ -90,7 +90,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterReq'
+              $ref: '#/components/schemas/Register'
       responses:
         '201':
           description: Created
@@ -104,7 +104,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginReq'
+              $ref: '#/components/schemas/Login'
       responses:
         '200':
           description: OK
@@ -122,7 +122,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseWrapperAds'
+                $ref: '#/components/schemas/Ads'
     post:
       tags:
         - Объявления
@@ -138,7 +138,7 @@ paths:
               type: object
               properties:
                 properties:
-                  $ref: '#/components/schemas/CreateAds'
+                  $ref: '#/components/schemas/CreateOrUpdateAd'
                 image:
                   type: string
                   format: binary
@@ -148,7 +148,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ads'
+                $ref: '#/components/schemas/Ad'
         '401':
           description: Unauthorized
   /ads/{id}/comments:
@@ -170,7 +170,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseWrapperComment'
+                $ref: '#/components/schemas/Comments'
         '401':
           description: Unauthorized
         '404':
@@ -192,7 +192,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateComment'
+              $ref: '#/components/schemas/CreateOrUpdateComment'
       responses:
         '200':
           description: OK
@@ -224,7 +224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FullAds'
+                $ref: '#/components/schemas/ExtendedAd'
         '401':
           description: Unauthorized
         '404':
@@ -266,14 +266,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAds'
+              $ref: '#/components/schemas/CreateOrUpdateAd'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ads'
+                $ref: '#/components/schemas/Ad'
         '403':
           description: Forbidden
         '401':
@@ -330,7 +330,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Comment'
+              $ref: '#/components/schemas/CreateOrUpdateComment'
       responses:
         '200':
           description: OK
@@ -356,7 +356,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseWrapperAds'
+                $ref: '#/components/schemas/Ads'
           description: OK
         '401':
           description: Unauthorized
@@ -412,7 +412,7 @@ components:
         newPassword:
           type: string
           description: 'новый пароль'
-    RegisterReq:
+    Register:
       type: object
       properties:
         username:
@@ -436,7 +436,7 @@ components:
           enum:
             - USER
             - ADMIN
-    LoginReq:
+    Login:
       type: object
       properties:
         password:
@@ -445,7 +445,7 @@ components:
         username:
           type: string
           description: 'логин'
-    CreateAds:
+    CreateOrUpdateAd:
       type: object
       properties:
         description:
@@ -458,7 +458,7 @@ components:
         title:
           type: string
           description: 'заголовок объявления'
-    CreateComment:
+    CreateOrUpdateComment:
       required:
         - text
       type: object
@@ -466,7 +466,7 @@ components:
         text:
           type: string
           description: 'текст комментария'
-    Ads:
+    Ad:
       type: object
       properties:
         author:
@@ -533,7 +533,19 @@ components:
         image:
           type: string
           description: 'ссылка на аватар пользователя'
-    ResponseWrapperAds:
+    UpdateUser:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: 'имя пользователя'
+        lastName:
+          type: string
+          description: 'фамилия пользователя'
+        phone:
+          type: string
+          description: 'телефон пользователя'
+    Ads:
       type: object
       properties:
         count:
@@ -543,8 +555,8 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Ads'
-    FullAds:
+            $ref: '#/components/schemas/Ad'
+    ExtendedAd:
       type: object
       properties:
         pk:
@@ -576,7 +588,7 @@ components:
         title:
           type: string
           description: 'заголовок объявления'
-    ResponseWrapperComment:
+    Comments:
       type: object
       properties:
         count:

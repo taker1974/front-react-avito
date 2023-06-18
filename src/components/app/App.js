@@ -149,8 +149,6 @@ function App({
     api
       .updateUser(
           {
-            "id": `${userInfo.id}`,
-            "email": `${userInfo.email}`,
             "firstName": `${firstName}`,
             "lastName": `${lastName}`,
             "phone": `${phone}`,
@@ -163,9 +161,7 @@ function App({
           ...userInfo,
           firstName: res.firstName,
           lastName: res.lastName,
-          phone: res.phone,
-          username: res.email,
-          id: res.id,
+          phone: res.phone
         };
 
         onLoadUser(user)
