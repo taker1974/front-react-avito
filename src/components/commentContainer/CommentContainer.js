@@ -18,7 +18,7 @@ function CommentContainer({
             //console.log('CommentContainer', deleteComment);
     return (
         <div className="commentContainer">
-            <h2 className="commentContainer__title">Отзывы</h2>
+            <h2 className="commentContainer__title">Комментарии</h2>
             <CommentList
                 comments={comments}
                 setComments={setComments}

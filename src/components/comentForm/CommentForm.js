@@ -22,13 +22,13 @@ function CommentForm({ addComment }) {
   return (
     <form className="comment__form" onSubmit={handleAddComment}>
       <label className="comment-label">
-        <h2 className="comment__form-title">Оставьте отзыв</h2>
+        <h2 className="comment__form-title">Оставьте комментарий</h2>
         <input
           value={values.text}
           name="text"
           className="comment__input"
           minLength="8"
-          maxLength="32"
+          maxLength="64"
           required
           onChange={handleChangeInput}
         />

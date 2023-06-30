@@ -492,7 +492,7 @@ components:
           type: string
           description: 'текст комментария'
           minLength: 8
-          maxLength: 32
+          maxLength: 64
     Ad:
       type: object
       properties:
