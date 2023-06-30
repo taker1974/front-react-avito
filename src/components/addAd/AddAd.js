@@ -92,8 +92,8 @@ function AddAd({ id, handleAddAd, isLoading }) {
               className="userForm__input"
               name="title"
               type="text"
-              minLength="3"
-              maxLength="30"
+              minLength="4"
+              maxLength="16"
               onChange={handleTitleChange}
             />
             <div
@@ -115,7 +115,7 @@ function AddAd({ id, handleAddAd, isLoading }) {
             <div
               className={`input-hidden ${image === null ? "input-error" : ""}`}
             >
-              {image === null ? "Загрузите фотографию" : image.size > 1000000 ? "Размер изображения не должен превышать 1мб" : ""}
+              {image === null ? "Загрузите фотографию" : ""}
             </div>
           </label>
         </div>
@@ -126,7 +126,8 @@ function AddAd({ id, handleAddAd, isLoading }) {
               className="userForm__input"
               type="number"
               name="price"
-              minLength="1"
+              min="0"
+              max="10000000"
               maxLength="30"
               onChange={handlePriceChange}
             />
@@ -145,7 +146,7 @@ function AddAd({ id, handleAddAd, isLoading }) {
               name="description"
               type="text"
               minLength="8"
-              maxLength="30"
+              maxLength="64"
               onChange={handleDescriptionChange}
             />
             <div

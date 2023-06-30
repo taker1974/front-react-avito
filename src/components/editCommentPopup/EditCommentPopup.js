@@ -60,8 +60,8 @@ function EditCommentPopup({
               title="Название"
               name="text"
               type="text"
-              minLength="3"
-              maxLength="100"
+              minLength="8"
+              maxLength="32"
               onChange={handleChangeInput}
             />
             <div

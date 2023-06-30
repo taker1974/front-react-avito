@@ -47,9 +47,9 @@ function Registration({ handleRegistration }) {
             title="username"
             name="username"
             type="email"
-            minLength="6"
-            maxLength="20"
-            placeholder="Длина логина от 6 до 20 символов"
+            minLength="4"
+            maxLength="16"
+            placeholder="Длина логина от 4 до 16 символов"
             className="form__input"
             onChange={handleChangeInput}
           />
@@ -67,8 +67,8 @@ function Registration({ handleRegistration }) {
             name="password"
             type="password"
             minLength="8"
-            maxLength="15"
-            placeholder="Длина пароля от 8 до 15 символов"
+            maxLength="16"
+            placeholder="Длина пароля от 8 до 16 символов"
             className="form__password form__input"
             onChange={handleChangeInput}
           />
@@ -104,9 +104,9 @@ function Registration({ handleRegistration }) {
             title="Имя"
             name="firstName"
             type="text"
-            minLength="3"
-            maxLength="10"
-            placeholder="Длина имени от 3 до 10 символов"
+            minLength="2"
+            maxLength="16"
+            placeholder="Длина имени от 2 до 16 символов"
             className="form__input"
             onChange={handleChangeInput}
           />
@@ -124,9 +124,9 @@ function Registration({ handleRegistration }) {
             title="Фамилия"
             name="lastName"
             type="text"
-            minLength="3"
-            maxLength="10"
-            placeholder="Длина фамилии от 3 до 10 символов"
+            minLength="2"
+            maxLength="16"
+            placeholder="Длина фамилии от 2 до 16 символов"
             className="form__input"
             onChange={handleChangeInput}
           />

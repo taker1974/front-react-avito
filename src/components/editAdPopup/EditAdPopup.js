@@ -51,8 +51,8 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
               name="title"
               required
               type="text"
-              minLength="3"
-              maxLength="30"
+              minLength="4"
+              maxLength="16"
               onChange={handleChangeInput}
             />
             <div
@@ -69,8 +69,8 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
               value={values.price || ""}
               name="price"
               required
-              minLength="1"
-              maxLength="30"
+              min="0"
+              max="10000000"
               onChange={handleChangeInput}
             />
             <div
@@ -87,7 +87,7 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
               value={values.description || ""}
               type="text"
               minLength="8"
-              maxLength="50"
+              maxLength="64"
               required
               onChange={handleChangeInput}
             />

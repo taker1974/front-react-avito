@@ -12,7 +12,7 @@ function CommentForm({ addComment }) {
     }
   }
 
-  function handeleAddComment(e) {
+  function handleAddComment(e) {
     e.preventDefault();
     addComment({
       text: values.text,
@@ -20,18 +20,16 @@ function CommentForm({ addComment }) {
   }
 
   return (
-    <form className="comment__form" onSubmit={handeleAddComment}>
+    <form className="comment__form" onSubmit={handleAddComment}>
       <label className="comment-label">
         <h2 className="comment__form-title">Оставьте отзыв</h2>
-        <textarea
+        <input
           value={values.text}
-          type="text"
           name="text"
           className="comment__input"
-          rows="3"
           minLength="8"
-          maxLength="200"
-          required="required"
+          maxLength="32"
+          required
           onChange={handleChangeInput}
         />
         <div className={`input-hidden ${errors.text ? "input-error" : ""}`}>

@@ -412,35 +412,35 @@ components:
           type: string
           description: 'текущий пароль'
           minLength: 8
-          maxLength: 15
+          maxLength: 16
         newPassword:
           type: string
           description: 'новый пароль'
           minLength: 8
-          maxLength: 15
+          maxLength: 16
     Register:
       type: object
       properties:
         username:
           type: string
           description: 'логин'
-          minLength: 6
-          maxLength: 20
+          minLength: 4
+          maxLength: 16
         password:
           type: string
           description: 'пароль'
           minLength: 8
-          maxLength: 15
+          maxLength: 16
         firstName:
           type: string
           description: 'имя пользователя'
-          minLength: 3
-          maxLength: 10
+          minLength: 2
+          maxLength: 16
         lastName:
           type: string
           description: 'фамилия пользователя'
-          minLength: 3
-          maxLength: 10
+          minLength: 2
+          maxLength: 16
         phone:
           type: string
           description: 'телефон пользователя'
@@ -458,25 +458,31 @@ components:
           type: string
           description: 'пароль'
           minLength: 8
-          maxLength: 15
+          maxLength: 16
         username:
           type: string
           description: 'логин'
-          minLength: 6
-          maxLength: 20
+          minLength: 4
+          maxLength: 16
     CreateOrUpdateAd:
       type: object
       properties:
         description:
           type: string
           description: 'описание объявления'
+          minLength: 8
+          maxLength: 64
         price:
           type: integer
           format: int32
           description: 'цена объявления'
+          minimum: 0
+          maximum: 10000000
         title:
           type: string
           description: 'заголовок объявления'
+          minLength: 4
+          maxLength: 16
     CreateOrUpdateComment:
       required:
         - text
@@ -485,6 +491,8 @@ components:
         text:
           type: string
           description: 'текст комментария'
+          minLength: 8
+          maxLength: 32
     Ad:
       type: object
       properties:

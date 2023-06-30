@@ -59,8 +59,8 @@ function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
           title="Имя"
           name="firstName"
           type="text"
-          minLength="3"
-          maxLength="10"
+          minLength="2"
+          maxLength="16"
           required
           autoComplete="on"
           className="userForm__input"
@@ -80,8 +80,8 @@ function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
           name="lastName"
           type="text"
           required
-          minLength="3"
-          maxLength="10"
+          minLength="2"
+          maxLength="16"
           autoComplete="on"
           className="userForm__input"
           onChange={handleChangeInput}

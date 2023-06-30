@@ -44,8 +44,8 @@ function Login({ handleAuthorization }) {
             name="username"
             value={values.username || ""}
             type="email"
-            minLength="6"
-            maxLength="20"
+            minLength="4"
+            maxLength="16"
             autoComplete="on"
             className="form__email form__input"
             onChange={handleChangeInput}
@@ -64,7 +64,7 @@ function Login({ handleAuthorization }) {
             name="password"
             type="password"
             minLength="8"
-            maxLength="15"
+            maxLength="16"
             autoComplete="on"
             className="form__password form__input"
             onChange={handleChangeInput}
