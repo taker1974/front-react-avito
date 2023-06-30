@@ -45,7 +45,7 @@ function Login({ handleAuthorization }) {
             value={values.username || ""}
             type="email"
             minLength="4"
-            maxLength="16"
+            maxLength="32"
             autoComplete="on"
             className="form__email form__input"
             onChange={handleChangeInput}

@@ -48,8 +48,8 @@ function Registration({ handleRegistration }) {
             name="username"
             type="email"
             minLength="4"
-            maxLength="16"
-            placeholder="Длина логина от 4 до 16 символов"
+            maxLength="32"
+            placeholder="Длина логина от 4 до 32 символов"
             className="form__input"
             onChange={handleChangeInput}
           />
