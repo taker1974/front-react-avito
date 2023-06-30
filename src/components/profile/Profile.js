@@ -60,10 +60,10 @@ function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
           name="firstName"
           type="text"
           minLength="3"
+          maxLength="10"
           required
           autoComplete="on"
           className="userForm__input"
-          maxLength="30"
           onChange={handleChangeInput}
         />
         <div
@@ -81,9 +81,9 @@ function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
           type="text"
           required
           minLength="3"
+          maxLength="10"
           autoComplete="on"
           className="userForm__input"
-          maxLength="30"
           onChange={handleChangeInput}
         />
         <div className={`input-hidden ${errors.lastName ? "input-error" : ""}`}>
@@ -98,7 +98,7 @@ function Profile({ userInfo, handleUpdateUser, handleUpdatePassword }) {
           type="tel"
           name="phone"
           required
-          pattern="\+7\s?[\(]{0,1}\d{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+          pattern="\+7\s?\(?\d{3}\)?\s?\d{3}-?\d{2}-?\d{2}"
           autoComplete="on"
           className="userForm__input"
           onChange={handleChangeInput}

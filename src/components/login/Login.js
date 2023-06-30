@@ -38,13 +38,14 @@ function Login({ handleAuthorization }) {
     >
       <>
         <label className="form__label">
-          <h2 className="form__description">Username</h2>
+          <h2 className="form__description">Логин</h2>
           <input
             required
             name="username"
             value={values.username || ""}
             type="email"
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            minLength="6"
+            maxLength="20"
             autoComplete="on"
             className="form__email form__input"
             onChange={handleChangeInput}
@@ -62,7 +63,8 @@ function Login({ handleAuthorization }) {
             value={values.password || ""}
             name="password"
             type="password"
-            minLength="1"
+            minLength="8"
+            maxLength="15"
             autoComplete="on"
             className="form__password form__input"
             onChange={handleChangeInput}

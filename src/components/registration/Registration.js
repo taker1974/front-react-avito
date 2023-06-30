@@ -33,21 +33,23 @@ function Registration({ handleRegistration }) {
       onSubmit={handleSubmit}
       path="/sign-in"
       btn="Зарегистрироваться"
-      text="Уже зарегистрированы?&nbsp;"
+      text="Уже зарегистрированы?"
       link="/sign-in"
       linkTitle="Войти"
       errors={!isValid}
     >
       <>
         <label className="form__label">
-          <h2 className="form__description">Имя пользователя</h2>
+          <h2 className="form__description">Логин (email) пользователя</h2>
           <input
             required
             value={values.username || ""}
             title="username"
             name="username"
             type="email"
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            minLength="6"
+            maxLength="20"
+            placeholder="Длина логина от 6 до 20 символов"
             className="form__input"
             onChange={handleChangeInput}
           />
@@ -65,7 +67,8 @@ function Registration({ handleRegistration }) {
             name="password"
             type="password"
             minLength="8"
-            placeholder="пароль должен состоять из букв и цифр"
+            maxLength="15"
+            placeholder="Длина пароля от 8 до 15 символов"
             className="form__password form__input"
             onChange={handleChangeInput}
           />
@@ -85,6 +88,7 @@ function Registration({ handleRegistration }) {
               className="form__input"
               onChange={handleChangeInput}
           >
+            <option value="" selected disabled hidden>Выберите роль</option>
             <option value="USER">Пользователь</option>
             <option value="ADMIN">Администратор</option>
           </select>
@@ -101,8 +105,9 @@ function Registration({ handleRegistration }) {
             name="firstName"
             type="text"
             minLength="3"
+            maxLength="10"
+            placeholder="Длина имени от 3 до 10 символов"
             className="form__input"
-            maxLength="30"
             onChange={handleChangeInput}
           />
           <div
@@ -120,8 +125,9 @@ function Registration({ handleRegistration }) {
             name="lastName"
             type="text"
             minLength="3"
+            maxLength="10"
+            placeholder="Длина фамилии от 3 до 10 символов"
             className="form__input"
-            maxLength="30"
             onChange={handleChangeInput}
           />
           <div
@@ -138,7 +144,7 @@ function Registration({ handleRegistration }) {
             title="Телефон"
             type="tel"
             name="phone"
-            pattern="\+7\s?[\(]{0,1}\d{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+            pattern="\+7\s?\(?\d{3}\)?\s?\d{3}-?\d{2}-?\d{2}"
             placeholder="+7(___)___-__-__"
             className="form__input"
             onChange={handleChangeInput}

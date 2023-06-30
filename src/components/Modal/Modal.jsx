@@ -21,7 +21,7 @@ const Modal = ( { isVisible, closeModal, updatePassword}) => {
                         <div className="modal__logo">
                             <h2>Сменить пароль</h2>
                         </div>
-                        <input className="modal__input password" type="password" name="password" value={password} onChange={handleChange} id="formpassword" placeholder="Введите новый пароль" />
+                        <input className="modal__input password" type="password" minLength="8" maxLength="15" name="password" value={password} onChange={handleChange} id="formpassword" placeholder="Введите новый пароль" />
                         <button className="modal__btn-enter" id="btnEnter" onClick={handleClick}><span>Сменить пароль</span></button>
                         <button className="modal__btn-signup" id="btnSignUp" onClick={closeModal}><span>Отмена</span></button>
                     </form>
