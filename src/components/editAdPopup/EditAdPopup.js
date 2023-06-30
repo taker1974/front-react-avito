@@ -52,7 +52,7 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
               required
               type="text"
               minLength="4"
-              maxLength="16"
+              maxLength="32"
               onChange={handleChangeInput}
             />
             <div

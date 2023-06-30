@@ -467,22 +467,22 @@ components:
     CreateOrUpdateAd:
       type: object
       properties:
-        description:
+        title:
           type: string
-          description: 'описание объявления'
-          minLength: 8
-          maxLength: 64
+          description: 'заголовок объявления'
+          minLength: 4
+          maxLength: 32
         price:
           type: integer
           format: int32
           description: 'цена объявления'
           minimum: 0
           maximum: 10000000
-        title:
+        description:
           type: string
-          description: 'заголовок объявления'
-          minLength: 4
-          maxLength: 16
+          description: 'описание объявления'
+          minLength: 8
+          maxLength: 64
     CreateOrUpdateComment:
       required:
         - text

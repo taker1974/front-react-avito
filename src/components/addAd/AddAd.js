@@ -93,7 +93,7 @@ function AddAd({ id, handleAddAd, isLoading }) {
               name="title"
               type="text"
               minLength="4"
-              maxLength="16"
+              maxLength="32"
               onChange={handleTitleChange}
             />
             <div
