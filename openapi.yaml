@@ -27,7 +27,7 @@ paths:
     get:
       tags:
         - Пользователи
-      summary: 'Получить информацию об авторизованном пользователе'
+      summary: 'Получение информации об авторизованном пользователе'
       operationId: getUser
       responses:
         '200':
@@ -41,7 +41,7 @@ paths:
     patch:
       tags:
         - Пользователи
-      summary: 'Обновить информацию об авторизованном пользователе'
+      summary: 'Обновление информации об авторизованном пользователе'
       operationId: updateUser
       requestBody:
         content:
@@ -61,7 +61,7 @@ paths:
     patch:
       tags:
         - Пользователи
-      summary: 'Обновить аватар авторизованного пользователя'
+      summary: 'Обновление аватара авторизованного пользователя'
       operationId: updateUserImage
       requestBody:
         content:
@@ -117,7 +117,7 @@ paths:
       tags:
         - Объявления
       operationId: getAllAds
-      summary: 'Получить все объявления'
+      summary: 'Получение всех объявлений'
       responses:
         '200':
           description: OK
@@ -128,7 +128,7 @@ paths:
     post:
       tags:
         - Объявления
-      summary: 'Добавить объявление'
+      summary: 'Добавление объявления'
       operationId: addAd
       requestBody:
         content:
@@ -157,7 +157,7 @@ paths:
     get:
       tags:
         - Комментарии
-      summary: 'Получить комментарии объявления'
+      summary: 'Получение комментариев объявления'
       operationId: getComments
       parameters:
         - name: id
@@ -181,7 +181,7 @@ paths:
     post:
       tags:
         - Комментарии
-      summary: 'Добавить комментарий к объявлению'
+      summary: 'Добавление комментария к объявлению'
       operationId: addComment
       parameters:
         - name: id
@@ -211,7 +211,7 @@ paths:
     get:
       tags:
         - Объявления
-      summary: 'Получить информацию об объявлении'
+      summary: 'Получение информации об объявлении'
       operationId: getAds
       parameters:
         - name: id
@@ -234,7 +234,7 @@ paths:
     delete:
       tags:
         - Объявления
-      summary: 'Удалить объявление'
+      summary: 'Удаление объявления'
       operationId: removeAd
       parameters:
         - name: id
@@ -255,7 +255,7 @@ paths:
     patch:
       tags:
         - Объявления
-      summary: 'Обновить информацию об объявлении'
+      summary: 'Обновление информации об объявлении'
       operationId: updateAds
       parameters:
         - name: id
@@ -286,7 +286,7 @@ paths:
     delete:
       tags:
         - Комментарии
-      summary: 'Удалить комментарий'
+      summary: 'Удаление комментария'
       operationId: deleteComment
       parameters:
         - name: adId
@@ -313,7 +313,7 @@ paths:
     patch:
       tags:
         - Комментарии
-      summary: 'Обновить комментарий'
+      summary: 'Обновление комментария'
       operationId: updateComment
       parameters:
         - name: adId
@@ -351,7 +351,7 @@ paths:
     get:
       tags:
         - Объявления
-      summary: 'Получить объявления авторизованного пользователя'
+      summary: 'Получение объявлений авторизованного пользователя'
       operationId: getAdsMe
       responses:
         '200':
@@ -366,7 +366,7 @@ paths:
     patch:
       tags:
         - Объявления
-      summary: 'Обновить картинку объявления'
+      summary: 'Обновление картинки объявления'
       operationId: updateImage
       parameters:
         - name: id
