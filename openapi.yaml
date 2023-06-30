@@ -558,9 +558,13 @@ components:
         firstName:
           type: string
           description: 'имя пользователя'
+          minLength: 3
+          maxLength: 10
         lastName:
           type: string
           description: 'фамилия пользователя'
+          minLength: 3
+          maxLength: 10
         phone:
           type: string
           description: 'телефон пользователя'
