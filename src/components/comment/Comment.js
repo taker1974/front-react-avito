@@ -16,6 +16,7 @@ function Comment({
     currentUserId: user,
     username,
     password,
+    role
 }) {
     const commentDate = (new Date(createdAt));
     const [isEdit, setEdit] = useState(false);
@@ -51,7 +52,7 @@ function Comment({
             </div>
             <div className="commentBox">
                 <p className="comment-text comment-message">{text}</p>
-                {user === userId ? (
+                {user === userId || role === 'ADMIN' ? (
                     <Buttons
                         className="comment-buttons"
                         classButton="comment-button"

@@ -7,7 +7,8 @@ function CommentList({
     user, 
     adId, 
     username, 
-    password, 
+    password,
+    role,
     handleEditCommPopupOpen, 
     deleteComment,
     onClose,
@@ -39,6 +40,7 @@ function CommentList({
                 currentUserId={user}
                 username={username}
                 password={password}
+                role={role}
                 onClose={onClose}
               />
             );

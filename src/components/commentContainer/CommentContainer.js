@@ -12,6 +12,7 @@ function CommentContainer({
     handleEditCommPopupOpen,
     username,
     password,
+    role,
     adId,
     onClose
 }) {
@@ -25,6 +26,7 @@ function CommentContainer({
                 user={user}
                 username={username}
                 password={password}
+                role={role}
                 isComPopupOpen={isComPopupOpen}
                 adId={adId}
                 deleteComment={deleteComment}

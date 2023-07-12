@@ -104,7 +104,7 @@ function SinglePage(props) {
             <div className="cardInformation__container">
               {ad.image === null ? (
                 <div className="cardInformation__img-null">
-                  {props.userInfo.username === ad.email ? (
+                  {props.userInfo.username === ad.email || props.userInfo.role === 'ADMIN' ? (
                     <button
                       onClick={props.handleOpenEditPhotoPopup}
                       className="cardInformation__img-change"
@@ -117,7 +117,7 @@ function SinglePage(props) {
                   style={{ backgroundImage: `url(${"http://localhost:8080"+ad.image})` }}
                   className="cardInformation__img"
                 >
-                  {props.userInfo.username === ad.email ? (
+                  {props.userInfo.username === ad.email || props.userInfo.role === 'ADMIN' ? (
                     <button
                       onClick={props.handleOpenEditPhotoPopup}
                       className="cardInformation__img-change"
@@ -126,7 +126,7 @@ function SinglePage(props) {
                   ) : null}
                 </div>
               )}
-              {props.userInfo.username !== ad.email ? null : (
+              {props.userInfo.username !== ad.email && props.userInfo.role !== 'ADMIN' ? null : (
                 <Buttons
                   user={props.user}
                   product={ad}
@@ -155,6 +155,7 @@ function SinglePage(props) {
                 user={props.user}
                 username={props.userInfo.username}
                 password={props.userInfo.password}
+                role={props.userInfo.role}
                 adId={adId}
                 onClose={props.onClose}
               />
