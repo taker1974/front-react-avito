@@ -217,7 +217,7 @@ class Api {
 
     updatePassword(username, password, newPassword){
         return fetch(`${this._url}/users/set_password`, {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "Basic " + base64.encode(`${username}:${password}`),

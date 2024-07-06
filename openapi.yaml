@@ -6,7 +6,7 @@ servers:
   - url: http://localhost:8080
 paths:
   /users/set_password:
-    post:
+    patch:
       tags:
         - Пользователи
       summary: 'Обновление пароля'
@@ -19,6 +19,8 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: New password hasn't passed validation
         '401':
           description: Unauthorized
   /users/me:
@@ -53,6 +55,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUser'
+        '400':
+          description: Some fields haven't passed validation
         '401':
           description: Unauthorized
   /users/me/image:
@@ -93,7 +97,9 @@ paths:
         '201':
           description: Created
         '400':
-          description: Bad Request
+          description: Some fields haven't passed validation
+        '409':
+          description: User with such email already exists
   /login:
     post:
       tags:
@@ -151,6 +157,8 @@ paths:
                 $ref: '#/components/schemas/Ad'
         '401':
           description: Unauthorized
+        '400':
+          description: Some fields haven't passed validation
   /ads/{id}/comments:
     get:
       tags:
@@ -163,7 +171,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: OK
@@ -187,7 +195,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       requestBody:
         content:
           application/json:
@@ -200,6 +208,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Comment'
+        '400':
+          description: Some fields haven't passed validation
         '401':
           description: Unauthorized
         '404':
@@ -217,7 +227,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: OK
@@ -240,7 +250,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '204':
           description: No Content
@@ -261,7 +271,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       requestBody:
         content:
           application/json:
@@ -274,10 +284,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ad'
-        '403':
-          description: Forbidden
+        '400':
+          description: Some fields haven't passed validation
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not found
   /ads/{adId}/comments/{commentId}:
@@ -292,20 +304,20 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: commentId
           in: path
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
-        '200':
-          description: OK
-        '403':
-          description: Forbidden
+        '204':
+          description: No Content
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not found
     patch:
@@ -319,13 +331,13 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: commentId
           in: path
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       requestBody:
         content:
           application/json:
@@ -338,10 +350,12 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/Comment'
-        '403':
-          description: Forbidden
+        '400':
+          description: Some fields haven't passed validation
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not found
 
@@ -372,7 +386,7 @@ paths:
           required: true
           schema:
             type: integer
-            format: int32
+            format: int64
       requestBody:
         content:
           multipart/form-data:
@@ -394,10 +408,10 @@ paths:
                 items:
                   type: string
                   format: byte
-        '403':
-          description: Forbidden
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
         '404':
           description: Not found
 
@@ -496,14 +510,14 @@ components:
       properties:
         author:
           type: integer
-          format: int32
+          format: int64
           description: 'id автора объявления'
         image:
           type: string
           description: 'ссылка на картинку объявления'
         pk:
           type: integer
-          format: int32
+          format: int64
           description: 'id объявления'
         price:
           type: integer
@@ -517,7 +531,7 @@ components:
       properties:
         author:
           type: integer
-          format: int32
+          format: int64
           description: 'id автора комментария'
         authorImage:
           type: string
@@ -531,7 +545,7 @@ components:
           description: 'дата и время создания комментария в миллисекундах с 00:00:00 01.01.1970'
         pk:
           type: integer
-          format: int32
+          format: int64
           description: 'id комментария'
         text:
           type: string
@@ -541,7 +555,7 @@ components:
       properties:
         id:
           type: integer
-          format: int32
+          format: int64
           description: 'id пользователя'
         email:
           type: string
@@ -584,10 +598,6 @@ components:
     Ads:
       type: object
       properties:
-        count:
-          type: integer
-          format: int32
-          description: 'общее количество объявлений'
         results:
           type: array
           items:
@@ -597,7 +607,7 @@ components:
       properties:
         pk:
           type: integer
-          format: int32
+          format: int64
           description: 'id объявления'
         authorFirstName:
           type: string
@@ -627,10 +637,6 @@ components:
     Comments:
       type: object
       properties:
-        count:
-          type: integer
-          format: int32
-          description: 'общее количество комментариев'
         results:
           type: array
           items:

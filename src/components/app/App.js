@@ -133,11 +133,15 @@ function App({
       })
       .catch((error) => {
         setIsAuthorized(false);
-        if (error === 500 || "Failed to fetch")
-          return console.log("На сервере произошла ошибка");
-        if (error === 409)
-          return console.log("Пользователь с таким email уже существует.");
-        if (error === 400) return console.log("Все поля должны быть заполнены");
+        if (error === 500 || "Failed to fetch") {
+            return console.log("На сервере произошла ошибка");
+        }
+        if (error === 409) {
+            return console.log("Пользователь с таким email уже существует");
+        }
+        if (error === 400) {
+            return console.log("Все поля должны быть заполнены");
+        }
         console.log(error);
       })
       .finally(() => {
