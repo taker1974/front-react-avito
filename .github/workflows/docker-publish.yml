@@ -27,16 +27,11 @@ jobs:
       - name: Checkout on the latest commit
         uses: actions/checkout@v3
 
-      - name: Maven versioning and Git tagging
+      - name: Git tagging
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'noreply-bot@github.com'
-          mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DgenerateBackupPoms=false
-          git commit -am "Release v${{ github.event.inputs.version }}"
           git tag -a "${{ github.event.inputs.version }}" -m "Release v${{ github.event.inputs.version }}" HEAD
-          mvn versions:set -DnewVersion=${{ github.event.inputs.version }}-SNAPSHOT -DgenerateBackupPoms=false
-          git commit -am "Reverting main version after release"
-          git push
           git push --tags
 
       - name: Checkout on the latest tag
