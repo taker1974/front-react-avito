@@ -1,6 +1,12 @@
 @font-face {
-    src: url(/src/vendor/font/BebasNeue-Regular.ttf) format('truetype');
-    font-family: 'BebasNeue';
+    src: url(/src/vendor/font/FiraCode-Regular.ttf) format('truetype');
+    font-family: 'Fira Code';
+    font-style: normal;
+}
+
+@font-face {
+    src: url(/src/vendor/font/FiraCode-Bold.ttf) format('truetype');
+    font-family: 'Fira Code';
     font-style: bold;
 }
 
