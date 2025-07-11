@@ -11,21 +11,21 @@ function Header({ onOpen, isAuthorized, signOut }) {
     <header className="header">
       {location === "/sign-up" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+          <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+          <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in/email" ? (
         <Link className="link" to="/">
-          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+          <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
         </Link>
       ) : location === "/sign-in/email/newpassword" ? (
-        <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+        <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
       ) : isAuthorized ? (
         <>
-          <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+          <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
           <MediaQuery minWidth={1000}>
             <Button
               logOut={signOut}
@@ -46,7 +46,7 @@ function Header({ onOpen, isAuthorized, signOut }) {
       ) : (
         <>
           <Link className="link" to="/" >
-            <img className="header__img" src={'/src/images/tear-off-ads.png'} alt="asd icon" />
+            <img className="header__img" src={'/src/images/main_left_top_image_v5.png'} alt="asd icon" />
           </Link>
           <Link className="link" to="/sign-in">
             <Button

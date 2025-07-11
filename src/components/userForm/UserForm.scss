@@ -87,25 +87,29 @@
   font-size: 0.7em;
   line-height: 12px;
   font-weight: 400;
-  color: #a0a0a0;
+  color: #f0e6d2;
   text-align: left;
   margin-bottom: 10px;
 }
 
 .userForm__input {
   @include input();
-  background-color: #ababd8;
-  color: white;
+  background-color: #e8e1d1;
+  border: 1px solid #d7d0c0;
+  padding: 8px;
+  border-radius: 4px;
+  color: #333333;
 }
 
 .userForm__button {
-  background-color: #6464b9;
-  width: fit-content;
-  padding: 12px 18px;
-  text-align: center;
+  background-color: #2e8b57;
+  color: white;
   border: none;
-  border-radius: 8px;
-  margin-top: 10px;
+  width: fit-content;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 4px;
+  margin-left: 10px;
   &:hover {
     opacity: 0.3;
   }
@@ -114,7 +118,7 @@
 .userForm__button-text {
   @include link();
   text-align: center;
-  color: #fff;
+  color: white;
   @media screen and (max-width: 460px) {
     font-size: 1em;
     line-height: 15px;
@@ -137,12 +141,12 @@
 
 .link-btn {
   background-image: url(/src/images/plus.png);
-  background-size: 28px 28px;
+  background-size: 32px 32px;
   background-color: inherit;
   background-repeat: no-repeat;
   background-position: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: none;
   outline: none;
   cursor: pointer;

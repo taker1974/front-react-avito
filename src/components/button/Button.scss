@@ -21,14 +21,15 @@
 }
 
 .button-link {
+  background-color: #d4af37;
+  color: #3c1414;
+  border: 2px solid #e8c96a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #f76343;
-  box-shadow: 4px 8px 16px rgba(0, 27, 111, 0.2);
-  border-radius: 20px;
-  border: none;
   &:hover {
     opacity: 0.3;
   }
