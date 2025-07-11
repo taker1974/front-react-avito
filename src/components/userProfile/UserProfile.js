@@ -31,7 +31,7 @@ function UserProfile({
             className="profile-avatar"
             style={{
               backgroundImage: `url(${
-                userImage ? userImage : 'src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'
+                userImage ? userImage : 'src/images/human-and-sky-v3.jpg'
               })`,
             }}
           >

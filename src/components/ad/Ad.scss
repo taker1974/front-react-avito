@@ -3,8 +3,8 @@
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  background-color: #6464b9;
-  box-shadow: inset 5px 5px 19px #5d5dac, inset -5px -5px 19px #6b6bc6;
+  background-color: #143c3c;
+  box-shadow: inset 5px 5px 19px #143c3a, inset -5px -5px 19px #143c3a;
   border-radius: 20px;
   &:hover {
     cursor: pointer;
@@ -32,7 +32,7 @@
 }
 
 .ad-img_null {
-  background-image: url(/src/images/malvestida-u79wy47kvVs-unsplash.jpg);
+  background-image: url(/src/images/ad-image-stub-v1.jpg);
   background-size: cover;
   border-radius: 20px 20px 0 0;
   background-repeat: no-repeat;
@@ -62,17 +62,17 @@
 }
 
 .ad__title {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.07em;
   font-size: 1.2em;
   line-height: 26px;
-  font-family: "Roboto", sans-serif;
   padding: 0;
   margin-bottom: 8px;
-  letter-spacing: -0.04em;
 }
 
 .ad__price {
-  font-size: 1.1em;
-  line-height: 16px;
-  letter-spacing: -0.04em;
   font-family: "Roboto", sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+  line-height: 16px;
 }

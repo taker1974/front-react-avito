@@ -43,7 +43,7 @@ function Comment({
                 {img ? (
                     <img src={`http://localhost:8080` + img} alt="user-img" className="comment-img"/>
                 ) : (
-                    <img src={'/src/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'} alt="user-img" className="comment-img"/>
+                    <img src={'/src/images/human-and-sky-v3.jpg'} alt="user-img" className="comment-img"/>
                 )}
                 <p className="comment-text comment__author-text">
                     {authorName || 'Комментатор'}

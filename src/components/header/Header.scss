@@ -24,12 +24,12 @@
 
 .header__img {
   background-color: inherit;
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
 }
 
 .header__title {
-  font-family: "BebasNeue";
+  font-family: "Arial";
   font-size: 1.5em;
   line-height: 26px;
   margin: 0;
@@ -37,8 +37,8 @@
 
 .header__sandwich {
   background-color: inherit;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   &:hover {
     opacity: 0.3;

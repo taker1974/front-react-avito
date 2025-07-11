@@ -8,9 +8,9 @@ function Promo({ ad, setAd }) {
       <MediaQuery minWidth={801}>
         <div className="promo__box">
           <div className="promo__title-box">
-            <h2 className="promo__title">Ads-Online</h2>
+            <h2 className="promo__title">Объявления</h2>
             <p className="promo__subtitle">
-              Лучшая платформа для продажи вещей
+              https://github.com/taker1974
             </p>
           </div>
           <SearchForm
@@ -20,8 +20,10 @@ function Promo({ ad, setAd }) {
         </div>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
-        <h2 className="promo__title">Ads-Online</h2>
-        <p className="promo__subtitle">Лучшая платформа для продажи вещей</p>
+        <h2 className="promo__title">Объявления</h2>
+        <p className="promo__subtitle">
+              https://github.com/taker1974
+        </p>
         <SearchForm ad={ad} setAd={setAd} />
       </MediaQuery>
     </section>
