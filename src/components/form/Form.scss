@@ -62,21 +62,20 @@
 
 .form__button {
   width: inherit;
-  padding: 13px 0 15px;
   text-align: center;
-  background: linear-gradient(
-    330.53deg,
-    #d40000 -15.77%,
-    #f76343 28.41%,
-    #fc6f6f 98.47%
-  );
-  border: none;
+  padding: 13px 0 15px;
+
+  background-color: #d4af37;
+  color: #3c1414;
+  border: 2px solid #e8c96a;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
   &:hover {
     opacity: 0.3;
   }
   @media screen and (min-width: 320px) and (max-width: 460px) {
-    padding: 15px 0 15px;
+    padding: 13px 0 15px;
   }
 }
 
