@@ -28,13 +28,13 @@
 .promo__title {
   font-size: 2.5em;
   line-height: 60px;
-  font-family: "Arial";
+  font-family: "Arial", serif;
 }
 
 .promo__subtitle {
   font-size: 1.12em;
   line-height: 24px;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   text-align: left;
 }
 
@@ -43,7 +43,6 @@
   height: 60px;
   width: 100%;
   background-color: #143c3a;
-  //margin: 80px auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
